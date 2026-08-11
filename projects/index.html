@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Udit Rawat — Projects</title>
+<meta name="description" content="Udit Rawat — chronological timeline of professional and personal AI/ML projects.">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: "Georgia", "Times New Roman", serif;
+    background: #fff; color: #000;
+    line-height: 1.5;
+    padding: 64px 20px 100px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+
+  header { margin-bottom: 56px; }
+  h1 { font-size: 1.9rem; font-weight: 400; letter-spacing: -0.01em; }
+  .role { font-size: 0.95rem; color: #444; margin-top: 4px; }
+  nav { margin-top: 18px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.78rem; }
+  nav a { color: #000; text-decoration: none; border-bottom: 1px solid #000; padding-bottom: 1px; }
+  nav a:hover { border-bottom-width: 2px; }
+  nav span.sep { color: #999; margin: 0 10px; }
+
+  .legend { margin-top: 22px; display: flex; gap: 22px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: #555; }
+  .legend .key { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .mark { width: 8px; height: 8px; display: inline-block; }
+  .legend .mark.pro { background: #000; }
+  .legend .mark.per { background: #fff; border: 1px solid #000; }
+
+  .year { margin-top: 44px; margin-bottom: 4px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.82rem; letter-spacing: 0.08em; color: #000; border-top: 1px solid #000; padding-top: 10px; }
+
+  .entry { padding: 20px 0; border-bottom: 1px solid #ddd; display: grid; grid-template-columns: 108px 1fr; gap: 16px; }
+  .entry:last-child { border-bottom: none; }
+  .when { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.72rem; color: #666; padding-top: 3px; }
+  .body-col { min-width: 0; }
+  .title-row { display: flex; align-items: baseline; gap: 9px; flex-wrap: wrap; }
+  .mark { width: 8px; height: 8px; display: inline-block; flex: none; position: relative; top: -1px; }
+  .mark.pro { background: #000; }
+  .mark.per { background: #fff; border: 1px solid #000; }
+  h3 { font-size: 1.05rem; font-weight: 700; }
+  h3 a { color: #000; text-decoration: none; border-bottom: 1px solid #000; }
+  h3 a:hover { border-bottom-width: 2px; }
+  .type { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.07em; color: #777; }
+  .desc { margin-top: 6px; font-size: 0.92rem; color: #222; }
+  .desc b { font-weight: 700; color: #000; }
+  .sub { margin: 3px 0 0 16px; padding: 0; list-style: none; }
+  .sub li { font-size: 0.88rem; color: #333; margin-top: 5px; padding-left: 12px; border-left: 2px solid #ddd; }
+  .stack { margin-top: 9px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.66rem; border: 1px solid #000; padding: 2px 7px; color: #000; }
+
+  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid #000; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.72rem; color: #666; }
+  footer a { color: #000; }
+
+  @media (max-width: 560px) {
+    .entry { grid-template-columns: 1fr; gap: 6px; }
+    .when { padding-top: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Udit Rawat</h1>
+    <div class="role">AI Engineer — chronological record of professional and personal work</div>
+    <nav>
+      <a href="../">Resume</a><span class="sep">/</span><a href="https://github.com/udit-rawat">GitHub</a><span class="sep">/</span><a href="https://www.linkedin.com/in/udit-rawat">LinkedIn</a>
+    </nav>
+    <div class="legend">
+      <span class="key"><span class="mark pro"></span>Professional</span>
+      <span class="key"><span class="mark per"></span>Personal</span>
+    </div>
+  </header>
+
+  <div class="year">2026</div>
+
+  <div class="entry">
+    <div class="when">Aug 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/tribunal">Tribunal</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Adversarial multi-agent fact-checker. Parallel Prosecutor/Defender agents argue over just-in-time RAG evidence (hybrid Wikipedia/web search, ONNX MiniLM embeddings, LanceDB), adjudicated by a Judge. A <b>deterministic citation verifier</b> rejects any quote not found verbatim in the source, eliminating fabricated citations without a second LLM call. On the current, harder 32-claim golden set: <b>66% strict verdict accuracy, 83% polarity accuracy, 96% quote-grounding</b>. Shipped as CLI, MCP server, and a streaming FastAPI UI with per-node telemetry.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">MCP</span><span class="tag">LanceDB</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Aug 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/fmcg-sales-investigation">FMCG Sales Investigation</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Production-style multi-agent FMCG sales assistant. A single <code>POST /ask</code> endpoint reasons over structured and unstructured data, with premise verification, row-level citations, and deterministic abstention when the evidence doesn't support an answer.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">Multi-agent</span><span class="tag">RAG</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Aug 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: JSON spec &rarr; Gemini TTS &rarr; GSAP composition &rarr; rendered MP4.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">Gemini TTS</span><span class="tag">GSAP</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jul 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3><span class="type">Personal</span></div>
+      <div class="desc">From-scratch PyTorch reproduction of the Hierarchical Reasoning Model (arXiv:2506.21734): dual-module GRU planner/executor with ACT Q-learning adaptive halting. 100% maze-path accuracy by epoch 20 with 66.7% compute reduction vs. baseline, validated across 8 controlled experiments with 49 pytest cases, including an honestly-reported negative result on 9&times;9 Sudoku.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">RL</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jul 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/gbg-syndicator">GBG Review Syndicator</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Review syndication at scale across Korean sources: char-2gram dedup before any LLM spend, LLM extraction (translation, procedure, price, sentiment, authenticity flags), and entity resolution constrained to a real 139-clinic directory so a hallucinated clinic can never enter the index.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">LLM extraction</span><span class="tag">Entity resolution</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jun 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/RepoSignal">RepoSignal</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Due-diligence scoring for any GitHub repo before you clone it. No AI, no servers &mdash; fully local, reproducible scoring.</div>
+      <div class="stack"><span class="tag">JavaScript</span><span class="tag">Local-only</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Apr 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/codex-community-hackathon-del-reel-gpt">ReelGPT</a></h3><span class="type">Personal &middot; Hackathon</span></div>
+      <div class="desc">AI-powered infographic reel generator, built at the Codex Community Hackathon, Delhi.</div>
+      <div class="stack"><span class="tag">TypeScript</span></div>
+    </div>
+  </div>
+
+  <div class="year">2025</div>
+
+  <div class="entry">
+    <div class="when">Apr 2025 &ndash;<br>Jul 2026</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark pro"></span><h3>AI Engineer, TapHealth</h3><span class="type">Professional</span></div>
+      <ul class="sub">
+        <li>Offline diabetes-guidance SLM shipped fully on-device (Snapdragon 680, Eli Lilly partnership): 380 MB, &lt;890 ms latency at 25 tok/s, 98% OOD-refusal accuracy. Qwen 0.6B/1.5B LoRA fine-tune, GGUF Q4_K_M, separate ONNX INT8 MPNet classifier gating the generative model.</li>
+        <li>Stateful 5-agent coaching system (LangGraph, Mem0/Hindsight memory, 25 tools) over hybrid pgvector/Qdrant retrieval. Async OCR/PDF pipeline over SSE WebSockets cut report processing from 40s to 15s.</li>
+        <li>Centralized LiteLLM gateway routing 65+ agentic workflows across 5+ microservices through OpenAI/Anthropic/open-source models, cutting LLM costs 54%, with structured outputs via Instructor and full Langfuse tracing.</li>
+        <li>Rebuilt an 812-line rules-based nudge pipeline into a decoupled DSPy architecture (strategy classifier separated from content generator) serving 5K+ users, plus a ClickHouse-backed analytics endpoint over glucose/HbA1c/meal data.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Feb &ndash; Mar 2025</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark pro"></span><h3>AI Intern, TapHealth</h3><span class="type">Professional</span></div>
+      <div class="desc">ARIMA/SARIMA/LSTM forecasting models for patient engagement; synthetic clinical data generation via NHANES + Q-learning, with LIME-based explainability. Promoted to AI Engineer after 2 months.</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Feb 2025</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/RAG-pipe">RAG-pipe</a></h3><span class="type">Personal</span></div>
+      <div class="desc">A retrieval-augmented generation pipeline, one of several early hands-on RAG builds before moving to production RAG at TapHealth.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">RAG</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jan 2025</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/RAG-cbot">RAG-cbot</a></h3><span class="type">Personal</span></div>
+      <div class="desc">A naive RAG chatbot using Ollama for local inference and MySQL for result storage.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">Ollama</span><span class="tag">MySQL</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jan 2025</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/Quest">Quest</a></h3><span class="type">Personal</span></div>
+      <div class="desc">An on-device RAG tool that searches a local answer database to help quickly find and explain solutions to coding problems.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">On-device RAG</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jan 2025</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/E2E-Sentiment">E2E-Sentiment</a></h3><span class="type">Personal</span></div>
+      <div class="desc">An end-to-end sentiment analyzer using logistic regression with SQL-backed storage.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">scikit-learn</span></div>
+    </div>
+  </div>
+
+  <div class="year">2024</div>
+
+  <div class="entry">
+    <div class="when">Nov 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/DSA.py">DSA.py</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Data structures and algorithms practice, in Python.</div>
+      <div class="stack"><span class="tag">Python</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Nov 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/ContextCraft">ContextCraft</a></h3><span class="type">Personal</span></div>
+      <div class="desc">An exploration of RAG technology using Ollama, demonstrated end-to-end on a local system.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">Ollama</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Oct 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark pro"></span><h3>Project Intern, Perception &amp; Intelligence Lab, IIT Kanpur</h3><span class="type">Professional</span></div>
+      <div class="desc">Curated a 200K+ image dataset and optimized diffusion-based inpainting models, achieving 11.72 dB PSNR and 0.41 SSIM. <span style="color:#666">(Jul&ndash;Oct 2024)</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Oct 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/CardioX">CardioX</a></h3><span class="type">Personal</span></div>
+      <div class="desc">An end-to-end MLOps pipeline replication (AWS, MLflow, Docker) on a toy cardiology dataset.</div>
+      <div class="stack"><span class="tag">AWS</span><span class="tag">MLflow</span><span class="tag">Docker</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Oct 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/ADL">ADL</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Recorded lab experiments from an Advanced Deep Learning course.</div>
+      <div class="stack"><span class="tag">Deep Learning</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jul 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/whisper-space">whisper-space</a></h3><span class="type">Personal</span></div>
+      <div class="desc">An ASR tool with a Gradio GUI that transcribes audio and layers on NLP-based analysis.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">Whisper</span><span class="tag">Gradio</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Jul 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/Gan-n">Gan-n</a></h3><span class="type">Personal</span></div>
+      <div class="desc">Experimenting with class-imbalanced data using SMOTEENN + GAN, tracked with DVC.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">GAN</span><span class="tag">DVC</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Mar 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/quick-profiler">quick-profiler</a></h3><span class="type">Personal</span></div>
+      <div class="desc">A small web app to quickly model numerous regressor and classifier options on any CSV dataset.</div>
+      <div class="stack"><span class="tag">Python</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Mar 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/Class-imbalance">Class-imbalance</a></h3><span class="type">Personal</span></div>
+      <div class="desc">A worked tutorial scaling a class-imbalance problem to a feasible solution.</div>
+      <div class="stack"><span class="tag">Python</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Feb 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/loan-prediction">loan-prediction</a></h3><span class="type">Personal</span></div>
+      <div class="desc">A fully worked loan-prediction project using SVM and Random Forest, structured as an ablation study.</div>
+      <div class="stack"><span class="tag">Python</span><span class="tag">SVM</span><span class="tag">Random Forest</span></div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="when">Feb 2024</div>
+    <div class="body-col">
+      <div class="title-row"><span class="mark per"></span><h3><a href="https://github.com/udit-rawat/Synthax">Synthax</a></h3><span class="type">Personal</span></div>
+      <div class="desc">A JAX + SymPy exploration of optimization in ML, working directly with Hessians and gradients.</div>
+      <div class="stack"><span class="tag">JAX</span><span class="tag">SymPy</span></div>
+    </div>
+  </div>
+
+  <footer>
+    Full resume: <a href="../">udit-rawat.github.io/resume</a> &middot; <a href="https://github.com/udit-rawat">github.com/udit-rawat</a>
+  </footer>
+
+</div>
+</body>
+</html>
