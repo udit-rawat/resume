@@ -79,7 +79,7 @@
   .sub li {
     font-size: 0.95rem; color: var(--ink-soft); margin-top: 9px; padding-left: 16px; position: relative;
   }
-  .sub li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
+  .sub li::before { content: "-"; position: absolute; left: 0; color: var(--ink-faint); }
   .stack { margin-top: 14px; font-size: 0.82rem; color: var(--ink-faint); }
   .stack span:not(:last-child)::after { content: " · "; }
 
@@ -102,7 +102,7 @@
   <header>
     <div class="eyebrow">AI Engineer &middot; New Delhi</div>
     <h1>Udit Rawat</h1>
-    <p class="intro">Most of my work lives in agentic systems, RAG, and the layer where a language model has to actually hold up in production, not just in a demo. Outside of work, I build things mostly to understand them properly — reproduce an architecture, break it, see where it actually fails. That's where most of the projects below came from.</p>
+    <p class="intro">Most of my work lives in agentic systems, RAG, and the layer where a language model has to actually hold up in production, not just in a demo. Outside of work, I build things mostly to understand them properly: reproduce an architecture, break it, see where it actually fails. That's where most of the projects below came from.</p>
     <p class="status"><span class="dot"></span>Currently available for contract and full-time work</p>
     <nav>
       <a href="../">Resume</a>
@@ -118,15 +118,15 @@
     <div class="entry">
       <div class="entry-head">
         <h3>Independent AI Engineer, Node Solutions</h3>
-        <div class="when">Sep 2026 — present</div>
+        <div class="when">Sep 2026–present</div>
       </div>
-      <div class="desc">Remote contract engineering for client projects — LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>
+      <div class="desc">Remote contract engineering for client projects: LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>
     </div>
 
     <div class="entry">
       <div class="entry-head">
         <h3>AI Engineer, TapHealth</h3>
-        <div class="when">Feb 2025 — Jul 2026</div>
+        <div class="when">Feb 2025–Jul 2026</div>
       </div>
       <div class="desc">AI Engineer from Apr 2025, previously AI Intern from Feb 2025, promoted after 2 months.</div>
       <ul class="sub">
@@ -141,7 +141,7 @@
     <div class="entry">
       <div class="entry-head">
         <h3>Project Intern, IIT Kanpur</h3>
-        <div class="when">Jul 2024 — Oct 2024</div>
+        <div class="when">Jul 2024–Oct 2024</div>
       </div>
       <div class="desc">Perception &amp; Intelligence Lab. Curated a 200K+ image dataset and optimized diffusion based inpainting models, achieving 11.72 dB PSNR and 0.41 SSIM.</div>
     </div>
@@ -152,26 +152,26 @@
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/tribunal">Tribunal</a></h3></div>
-      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules &mdash; no LLM grades its own honesty. <strong>96% quote grounding, 83% polarity accuracy</strong> on a 32-claim golden set. Ships as CLI, streaming web UI, and MCP server.</div>
+      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules; no LLM grades its own honesty. <strong>96% quote grounding, 83% polarity accuracy</strong> on a 32-claim golden set. Ships as CLI, streaming web UI, and MCP server.</div>
       <div class="stack"><span>Python</span><span>LangGraph</span><span>MCP</span></div>
     </div>
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3></div>
-      <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. <strong>100% maze-path accuracy</strong>, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments &mdash; plus an honest negative result on 9&times;9 Sudoku, root-caused and documented rather than hidden.</div>
+      <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. <strong>100% maze-path accuracy</strong>, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments, plus an honest negative result on 9&times;9 Sudoku, root-caused and documented rather than hidden.</div>
       <div class="stack"><span>Python</span><span>PyTorch</span></div>
     </div>
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/ContextLab">Context Lab</a></h3></div>
-      <div class="desc">Built to independently verify a competitor's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Found <strong>97.9% token reduction</strong> achievable on my own corpus &mdash; but all four retrieval strategies tied on answer quality once the variance was checked. Reported the tie honestly instead of the more convenient result.</div>
+      <div class="desc">Built to independently verify a competitor's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Found <strong>97.9% token reduction</strong> achievable on my own corpus, but all four retrieval strategies tied on answer quality once the variance was checked. Reported the tie honestly instead of the more convenient result.</div>
       <div class="stack"><span>Python</span><span>RAG Evals</span></div>
     </div>
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/planrail">planrail</a></h3></div>
       <div class="live">Powers <a href="https://aitrainingplan.app">aitrainingplan.app</a></div>
-      <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. <strong>Resolves every constraint violation at zero extra LLM calls</strong> on both test fixtures &mdash; repair before regenerate, not a model re-grading itself.</div>
+      <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. <strong>Resolves every constraint violation at zero extra LLM calls</strong> on both test fixtures: repair before regenerate, not a model re-grading itself.</div>
       <div class="stack"><span>Python</span><span>Agentic Pipelines</span></div>
     </div>
 
@@ -190,13 +190,13 @@
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/RepoSignal">RepoSignal</a></h3></div>
-      <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency &mdash; maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable.</div>
+      <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency: maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable.</div>
       <div class="stack"><span>JavaScript</span><span>Chrome Extension</span></div>
     </div>
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3></div>
-      <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4 &mdash; no manual keyframing. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
+      <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4, with no manual keyframing. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
       <div class="stack"><span>Python</span><span>GSAP</span></div>
     </div>
   </section>
