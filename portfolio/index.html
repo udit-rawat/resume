@@ -96,7 +96,7 @@
   .pd-live a { text-decoration: none; border-bottom: 1px solid currentColor; }
 
   /* ---- player: a deliberate exception to the flat/no-shadow rule, see anti-slop.md ---- */
-  .player { max-width: 300px; margin: 70px auto 0; user-select: none; perspective: 1400px; }
+  .player { max-width: 300px; margin: 70px auto 0; user-select: none; }
   .device {
     background: linear-gradient(180deg, #e8e8e6 0%, #d7d7d4 100%);
     border: 1px solid #b9bab3; border-radius: 30px;
@@ -104,14 +104,11 @@
     box-shadow:
       inset 0 0 34px rgba(0,0,0,.1),
       0 30px 60px -25px rgba(0,0,0,.5);
-    transform-style: preserve-3d;
-    transform: rotateX(0deg) rotateY(0deg);
-    transition: transform .5s cubic-bezier(.2,.8,.2,1);
-    animation: deviceIntro .9s cubic-bezier(.2,.8,.2,1) both;
+    animation: deviceIntro .5s cubic-bezier(.2,.8,.2,1) both;
   }
   @keyframes deviceIntro {
-    from { transform: rotateY(-32deg) rotateX(9deg) scale(.86); opacity: 0; }
-    to { transform: rotateY(0) rotateX(0) scale(1); opacity: 1; }
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   .screen-frame {
     position: relative; overflow: hidden;
@@ -137,23 +134,11 @@
     scrollbar-width: none; -ms-overflow-style: none;
   }
   .menu-pane::-webkit-scrollbar { display: none; width: 0; height: 0; }
-  .home-pane {
-    width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 20px;
-  }
-  .app-tile {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    padding: 12px 16px; border-radius: 12px; cursor: pointer;
-  }
-  .app-tile.selected { background: linear-gradient(180deg, #7bb0f7 0%, #4680ea 48%, #2a5bca 100%); }
-  .app-tile .app-icon {
-    width: 50px; height: 50px; border-radius: 13px; flex: none;
-    background: linear-gradient(160deg, var(--screen-accent), #123a33);
-    display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 3px 6px rgba(0,0,0,.22);
-  }
-  .app-tile .app-icon svg { width: 25px; height: 25px; stroke: #fff; }
-  .app-tile .app-label { font-size: 0.76rem; font-weight: 600; color: var(--screen-ink); }
-  .app-tile.selected .app-label { color: #fff; }
+  .menu-pane.full { flex: 1 1 100%; border-right: none; padding: 8px 10px; }
+  .row-icon { width: 15px; height: 15px; flex: none; color: var(--screen-ink-soft); }
+  .row-icon svg { display: block; width: 100%; height: 100%; }
+  .menu-row.selected .row-icon { color: #fff; }
+  .row-label { display: flex; align-items: center; gap: 9px; }
   .menu-head {
     display: flex; justify-content: space-between; align-items: center;
     padding: 2px 4px 7px 2px; margin-bottom: 3px; border-bottom: 1px solid rgba(21,24,26,.12);
@@ -492,7 +477,6 @@
   var modalOpen = false;
   var screen = document.getElementById('screen');
   var screenFrame = document.getElementById('screenFrame');
-  var device = document.getElementById('device');
   var modalBackdrop = document.getElementById('modalBackdrop');
   var modalCard = document.getElementById('modalCard');
   var modalBody = document.getElementById('modalBody');
@@ -505,9 +489,13 @@
     if (view === 'home') {
       var tiles = apps.map(function (app, i) {
         var sel = i === appIndex ? ' selected' : '';
-        return '<div class="app-tile' + sel + '" data-i="' + i + '"><div class="app-icon">' + app.icon + '</div><div class="app-label">' + app.label + '</div></div>';
+        return '<li class="menu-row' + sel + '" data-i="' + i + '"><span class="row-label"><span class="row-icon">' + app.icon + '</span>' + app.label + '</span><span class="chev">&#8250;</span></li>';
       }).join('');
-      screen.innerHTML = '<div class="home-pane">' + tiles + '</div>';
+      screen.innerHTML =
+        '<div class="menu-pane full">' +
+          '<div class="menu-head"><span class="menu-title">Menu</span><span class="batt"></span></div>' +
+          '<ul class="menu-list">' + tiles + '</ul>' +
+        '</div>';
     } else {
       var list = getAppItems(apps[appIndex].id);
       var it = list[current];
@@ -535,19 +523,19 @@
   }
 
   screen.addEventListener('click', function (e) {
-    var tile = e.target.closest('.app-tile');
-    if (tile) {
-      appIndex = parseInt(tile.getAttribute('data-i'), 10);
+    var row = e.target.closest('.menu-row');
+    if (!row) return;
+    var i = parseInt(row.getAttribute('data-i'), 10);
+    if (view === 'home') {
+      appIndex = i;
       view = 'list';
       current = 0;
       renderScreen();
-      return;
+    } else {
+      current = i;
+      renderScreen();
+      openModal();
     }
-    var row = e.target.closest('.menu-row');
-    if (!row) return;
-    current = parseInt(row.getAttribute('data-i'), 10);
-    renderScreen();
-    openModal();
   });
 
   function renderModalBody() {
@@ -606,19 +594,6 @@
     else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); next(); }
     else if (e.key === 'Enter') { e.preventDefault(); select(); }
     else if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); menu(); }
-  });
-
-  // live 3D tilt on desktop pointer hover
-  var playerEl = document.querySelector('.player');
-  playerEl.addEventListener('mousemove', function (e) {
-    var r = device.getBoundingClientRect();
-    var px = (e.clientX - r.left) / r.width - 0.5;
-    var py = (e.clientY - r.top) / r.height - 0.5;
-    var maxTilt = 9;
-    device.style.transform = 'rotateY(' + (px * maxTilt * 2) + 'deg) rotateX(' + (-py * maxTilt * 2) + 'deg)';
-  });
-  playerEl.addEventListener('mouseleave', function () {
-    device.style.transform = 'rotateX(0deg) rotateY(0deg)';
   });
 
   // circular drag on desktop

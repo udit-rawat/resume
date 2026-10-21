@@ -149,10 +149,15 @@ above, on this one device illustration only:
   its wheel and select button are flat white with a single 1px grey border and at most one
   big soft shadow, no gradients at all. Matched that restraint — the materials now read
   real because there's less of them, not more.
-- It tilts in 3D on pointer hover and has a one-time 3D entrance animation, using a
-  restrained, non-bounce easing curve (`cubic-bezier(.2,.8,.2,1)`), consistent with the
-  motion rule above even while the surface treatment isn't.
+- It has a one-time fade/slide-up entrance, no rotation, using a restrained non-bounce
+  easing curve (`cubic-bezier(.2,.8,.2,1)`). An earlier pass also tracked the cursor for a
+  live 3D tilt on hover; cut on direct feedback for feeling gimmicky rather than real, same
+  reasoning as the "no reflexive animate-pulse" rule above applied to a new case.
 - The detail modal scales and fades in with the same easing curve, no elastic overshoot.
+- The home menu first drew "Experience"/"Projects" as large gradient-filled icon tiles.
+  Corrected to match actual iPod OS convention (confirmed on the real reference): a plain
+  list of rows, each with a small monochrome line-icon to the left of the text, same
+  selection styling as every other list in the player. Less decoration, not more, again.
 
 The line: this treatment is confined to the one device illustration and its own modal. If
 gradients, shadows, or glow start showing up on plain content elsewhere on the site, that's
