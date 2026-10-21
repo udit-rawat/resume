@@ -127,3 +127,14 @@ default, not because the anti-slop reasoning behind either earlier pass was wron
   style that's its own AI-generated-diagram tell.
 - Every redesign pass gets checked against this file before shipping, and this file gets
   updated the moment a new tell is identified, even one this site is already guilty of.
+
+## One documented exception: the iPod player's screen glow
+
+The portfolio page (`portfolio/index.html`) is now an interactive click-wheel player, not
+a scannable list, a deliberate choice for freelance/contract outreach rather than
+recruiter ATS-scanning. Its screen bezel glows on every item change. This is technically
+the "glowing colored box-shadow" pattern this file says to avoid "ever" above. The
+exception stands because it depicts something real and singular: an LCD's own backlight,
+on the one screen element of a device illustration, tied directly to real interaction
+state (the item just changed), not a decorative halo scattered across unrelated cards.
+If this starts creeping anywhere else on the site, it's slop again and should be cut.

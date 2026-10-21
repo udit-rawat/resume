@@ -23,6 +23,9 @@
     --ink-faint: #868d8c;
     --accent: #1f6e63;
     --rule: #d9dcd6;
+    --device: #e7e7e3;
+    --device-edge: #c7c8c3;
+    --screen-bg: #eef1ea;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { background: var(--paper); }
@@ -41,15 +44,11 @@
     font-size: clamp(2.6rem, 7vw, 4rem); line-height: 1.04; letter-spacing: -0.01em;
     color: var(--ink);
   }
-  .role {
-    margin-top: 14px; font-size: 1.05rem; color: var(--ink-soft);
-  }
+  .role { margin-top: 14px; font-size: 1.05rem; color: var(--ink-soft); }
   .intro {
     margin-top: 26px; font-size: 1.14rem; line-height: 1.65; color: var(--ink-soft);
     max-width: 52ch;
   }
-  .intro a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
-
   .status {
     margin-top: 28px; display: flex; align-items: center; gap: 9px;
     font-size: 0.95rem; color: var(--ink);
@@ -60,80 +59,104 @@
   nav a { color: var(--ink-soft); text-decoration: none; }
   nav a:hover { color: var(--accent); }
 
-  section { margin-top: 84px; }
-  h2 {
-    font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
-    font-size: 1.6rem; letter-spacing: -0.005em; color: var(--ink); margin-bottom: 30px;
-  }
-  .section-row {
-    display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 30px;
-  }
-  .section-row h2 { margin-bottom: 0; }
-  .section-row a {
-    font-size: 0.8rem; color: var(--ink-faint); text-decoration: none;
-    border-bottom: 1px solid var(--rule);
-  }
-  .section-row a:hover { color: var(--accent); border-color: var(--accent); }
-
-  .entry { padding: 28px 0; border-top: 1px solid var(--rule); }
-  .entry:last-child { padding-bottom: 0; }
-  .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-  .when { font-size: 0.82rem; color: var(--ink-faint); white-space: nowrap; }
-  h3 {
-    font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
-    font-size: 1.32rem; letter-spacing: -0.005em; color: var(--ink);
-  }
-  h3 a { color: var(--ink); text-decoration: none; }
-  h3 a:hover { color: var(--accent); }
-  .live { font-size: 0.85rem; margin-top: 6px; }
-  .live a { text-decoration: none; border-bottom: 1px solid currentColor; }
-  .desc { margin-top: 10px; font-size: 1rem; line-height: 1.62; color: var(--ink-soft); max-width: 58ch; }
+  /* ---- content typography, reused inside the player's screen ---- */
+  .desc { margin-top: 10px; font-size: 0.86rem; line-height: 1.55; color: var(--ink-soft); }
   .desc a { color: var(--ink); text-decoration-color: var(--accent); }
   .desc strong { color: var(--ink); font-weight: 600; }
-  .sub { margin: 12px 0 0 0; padding: 0; list-style: none; max-width: 58ch; }
-  .sub li {
-    font-size: 0.95rem; color: var(--ink-soft); margin-top: 9px; padding-left: 16px; position: relative;
-  }
+  .sub { margin: 10px 0 0 0; padding: 0; list-style: none; }
+  .sub li { font-size: 0.82rem; color: var(--ink-soft); margin-top: 8px; padding-left: 14px; position: relative; }
   .sub li::before { content: "-"; position: absolute; left: 0; color: var(--ink-faint); }
-  .stack { margin-top: 14px; font-size: 0.82rem; color: var(--ink-faint); }
+  .stack { margin-top: 12px; font-size: 0.74rem; color: var(--ink-faint); }
   .stack span:not(:last-child)::after { content: " · "; }
-
-  .highlights { list-style: none; margin: 10px 0 0 0; padding: 0; max-width: 58ch; }
-  .highlights li {
-    font-size: 0.95rem; color: var(--ink-soft); margin-top: 7px; padding-left: 18px; position: relative;
-  }
+  .highlights { list-style: none; margin: 8px 0 0 0; padding: 0; }
+  .highlights li { font-size: 0.82rem; color: var(--ink-soft); margin-top: 6px; padding-left: 16px; position: relative; }
   .highlights li::before { content: "+"; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
-
-  .flow { display: flex; flex-wrap: wrap; align-items: flex-start; margin-top: 16px; max-width: 58ch; }
-  .flow .step { font-size: 0.82rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
-  .flow .cap { display: block; font-size: 0.72rem; font-weight: 400; color: var(--ink-faint); margin-top: 2px; white-space: normal; max-width: 15ch; }
-  .flow .arrow { color: var(--ink-faint); padding: 0 8px; align-self: flex-start; font-size: 0.82rem; }
-
-  .bars { margin-top: 16px; max-width: 58ch; }
-  .bars .bar-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 0.78rem; }
-  .bars .bar-label { width: 116px; flex: none; color: var(--ink-soft); }
-  .bars .bar-track { flex: 1; background: var(--rule); height: 15px; }
+  .flow { display: flex; flex-wrap: wrap; align-items: flex-start; margin-top: 12px; }
+  .flow .step { font-size: 0.74rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .flow .cap { display: block; font-size: 0.66rem; font-weight: 400; color: var(--ink-faint); margin-top: 2px; white-space: normal; max-width: 13ch; }
+  .flow .arrow { color: var(--ink-faint); padding: 0 6px; align-self: flex-start; font-size: 0.74rem; }
+  .bars { margin-top: 12px; }
+  .bars .bar-row { display: flex; align-items: center; gap: 8px; margin-top: 7px; font-size: 0.7rem; }
+  .bars .bar-label { width: 96px; flex: none; color: var(--ink-soft); }
+  .bars .bar-track { flex: 1; background: var(--rule); height: 12px; }
   .bars .bar-fill { background: var(--ink-faint); height: 100%; min-width: 3px; }
   .bars .bar-fill.win { background: var(--accent); }
-  .bars .bar-value { width: 86px; flex: none; text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
-
-  figure.shot { margin-top: 14px; max-width: 58ch; }
+  .bars .bar-value { width: 70px; flex: none; text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  figure.shot { margin-top: 12px; }
   figure.shot img { width: 100%; display: block; border: 1px solid var(--rule); }
-  figure.shot figcaption { margin-top: 6px; font-size: 0.78rem; color: var(--ink-faint); }
-  .shot-pair { display: flex; gap: 10px; margin-top: 14px; max-width: 58ch; flex-wrap: wrap; }
-  .shot-pair img { flex: 1 1 200px; width: 100%; border: 1px solid var(--rule); display: block; }
+  figure.shot figcaption { margin-top: 5px; font-size: 0.68rem; color: var(--ink-faint); }
+  .shot-pair { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .shot-pair img { flex: 1 1 110px; width: 100%; border: 1px solid var(--rule); display: block; }
+  .pd-live { font-size: 0.74rem; margin-top: 8px; }
+  .pd-live a { text-decoration: none; border-bottom: 1px solid currentColor; }
+
+  /* ---- player ---- */
+  .player { max-width: 300px; margin: 70px auto 0; user-select: none; }
+  .device {
+    background: var(--device); border: 1px solid var(--device-edge); border-radius: 30px;
+    padding: 20px 20px 26px;
+  }
+  .screen-frame {
+    background: #2a2d2c; border-radius: 12px; padding: 7px;
+    transition: box-shadow .35s ease;
+  }
+  .screen-frame.glow { box-shadow: 0 0 36px 6px rgba(31,110,99,.45); }
+  .screen {
+    background: var(--screen-bg); border-radius: 6px;
+    height: 190px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+    padding: 14px 16px;
+  }
+  .screen-idx { font-size: 0.68rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  .screen-kind { font-size: 0.66rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 10px; }
+  .screen-title {
+    font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
+    font-size: 1.3rem; line-height: 1.12; color: var(--ink); margin-top: 4px;
+  }
+  .screen-sub { font-size: 0.78rem; color: var(--ink-soft); margin-top: 8px; }
+  .screen-hint { font-size: 0.68rem; color: var(--ink-faint); margin-top: 16px; }
+  .pd-title {
+    font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
+    font-size: 1.1rem; line-height: 1.15; color: var(--ink);
+  }
+  .pd-meta { font-size: 0.72rem; color: var(--ink-faint); margin-top: 3px; }
+
+  .wheel-wrap { position: relative; width: 210px; height: 210px; margin: 26px auto 0; }
+  .wheel {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: #dadad6; border: 1px solid var(--device-edge);
+    touch-action: none; cursor: grab;
+  }
+  .wheel:active { cursor: grabbing; }
+  .wheel-btn {
+    position: absolute; background: none; border: none; cursor: pointer;
+    font-family: "Work Sans", sans-serif; font-size: 0.66rem; font-weight: 600;
+    letter-spacing: .05em; color: var(--ink-soft); text-transform: uppercase;
+  }
+  .wheel-btn:hover { color: var(--accent); }
+  .wheel-btn.menu { top: 14px; left: 50%; transform: translateX(-50%); }
+  .wheel-btn.prev { left: 16px; top: 50%; transform: translateY(-50%); font-size: 1rem; }
+  .wheel-btn.next { right: 16px; top: 50%; transform: translateY(-50%); font-size: 1rem; }
+  .wheel-btn.play { bottom: 14px; left: 50%; transform: translateX(-50%); font-size: 1rem; }
+  .select-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 78px; height: 78px; border-radius: 50%;
+    background: #f1f1ee; border: 1px solid var(--device-edge); cursor: pointer;
+  }
+  .select-btn:hover { background: #fff; }
+
+  .player-hint {
+    text-align: center; margin-top: 16px; font-size: 0.76rem; color: var(--ink-faint);
+  }
 
   footer {
     margin-top: 90px; padding-top: 28px; border-top: 1px solid var(--rule);
-    font-size: 0.88rem; color: var(--ink-faint);
+    font-size: 0.88rem; color: var(--ink-faint); text-align: center;
   }
   footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule); }
   footer a:hover { color: var(--accent); border-color: var(--accent); }
 
   @media (max-width: 480px) {
     body { padding: 64px 20px 90px; }
-    .entry-head { flex-direction: column; align-items: flex-start; gap: 4px; }
-    .section-row { flex-direction: column; align-items: flex-start; gap: 6px; }
   }
 </style>
 </head>
@@ -143,185 +166,295 @@
   <header>
     <h1>Udit Rawat</h1>
     <p class="role">AI Engineer, based in New Delhi.</p>
-    <p class="intro">Most of what I build makes deterministic code do the checking a model shouldn't be trusted to do on its own: verifying citations instead of asking an LLM if it behaved, repairing a plan with code instead of regenerating it, replaying a learned action with no model in the loop at all. The projects below are that idea applied a few different ways, including the results that didn't come out clean.</p>
-    <p class="status"><span class="dot"></span>Currently available for contract and full-time work</p>
+    <p class="intro">Most of what I build makes deterministic code do the checking a model shouldn't be trusted to do on its own: verifying citations instead of asking an LLM if it behaved, repairing a plan with code instead of regenerating it, replaying a learned action with no model in the loop at all. Below: the same work, as a thing you scroll through rather than a list you skim.</p>
+    <p class="status"><span class="dot"></span>Currently available for contract and freelance work</p>
     <nav>
       <a href="../">Resume</a>
       <a href="https://github.com/udit-rawat">GitHub</a>
       <a href="https://www.linkedin.com/in/udit-rawat">LinkedIn</a>
       <a href="mailto:uditrawat1905@gmail.com">Email</a>
+      <a href="../Udit_Rawat_AI_Engineer.pdf">Resume (PDF)</a>
     </nav>
   </header>
 
-  <section>
-    <div class="section-row">
-      <h2>Experience</h2>
-      <a href="../Udit_Rawat_AI_Engineer.pdf">Full resume (PDF)</a>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head">
-        <h3>Independent AI Engineer, Node Solutions</h3>
-        <div class="when">Sep 2026&ndash;present</div>
+  <div class="player">
+    <div class="device">
+      <div class="screen-frame" id="screenFrame">
+        <div class="screen" id="screen" aria-live="polite" tabindex="0"></div>
       </div>
-      <div class="desc">Remote contract engineering for client projects: LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>
-    </div>
 
-    <div class="entry">
-      <div class="entry-head">
-        <h3>AI Engineer, TapHealth</h3>
-        <div class="when">Feb 2025&ndash;Jul 2026</div>
+      <div class="wheel-wrap">
+        <div class="wheel" id="wheel">
+          <button class="wheel-btn menu" id="btnMenu" aria-label="Menu, go back">MENU</button>
+          <button class="wheel-btn prev" id="btnPrev" aria-label="Previous">&#9664;</button>
+          <button class="wheel-btn next" id="btnNext" aria-label="Next">&#9654;</button>
+          <button class="wheel-btn play" id="btnPlay" aria-label="Select">&#9199;</button>
+        </div>
+        <button class="select-btn" id="btnSelect" aria-label="Select, open details"></button>
       </div>
-      <div class="desc">AI Engineer from Apr 2025, previously AI Intern from Feb 2025, promoted after 2 months.</div>
-      <ul class="sub">
-        <li>Built and shipped an offline diabetes guidance SLM running fully on device on Snapdragon 680 hardware, in partnership with Eli Lilly: a LoRA fine-tuned Qwen 0.6B/1.5B, GGUF Q4_K_M quantized, with a separate ONNX INT8 classifier trained just to catch out-of-distribution questions. 380 MB, under 890ms latency at 25 tok/s, 98% accuracy on out-of-distribution refusal.</li>
-        <li>Built a stateful 5 agent coaching system with LangGraph and Mem0/Hindsight memory across 25 tools. An async OCR pipeline over SSE WebSockets cut report processing from 40s to 15s.</li>
-        <li>Cut LLM costs 54% by designing a centralized LiteLLM gateway routing 65+ agentic workflows across OpenAI, Anthropic, and open source models, with structured outputs via Instructor and full Langfuse tracing.</li>
-      </ul>
     </div>
-
-    <div class="entry">
-      <div class="entry-head">
-        <h3>Project Intern, IIT Kanpur</h3>
-        <div class="when">Jul 2024&ndash;Oct 2024</div>
-      </div>
-      <div class="desc">Perception &amp; Intelligence Lab. Curated a 200K+ image dataset and optimized a diffusion-based inpainting model against it, reaching 11.72 dB PSNR and 0.41 SSIM on held-out masks.</div>
-    </div>
-  </section>
-
-  <section>
-    <h2>Selected Projects</h2>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/tribunal">Tribunal</a></h3></div>
-      <ul class="highlights">
-        <li>Prosecutor and Defender argue opposite sides, a deterministic verifier checks every quote</li>
-        <li>96% quote grounding, 83% polarity accuracy on 32 hand-labelled claims</li>
-        <li>Ships as CLI, streaming web UI, and MCP server</li>
-      </ul>
-      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules, so no LLM grades its own output. The adversarial structure exists because a single model asked "is this true?" tends to agree with how the question is framed. On a 32-claim balanced set, deliberately small and hand-labelled (29 scored; 3 excluded as API errors, not counted as wrong): <strong>96% quote grounding, 83% polarity accuracy, 66% strict accuracy</strong>. The more useful number is the error breakdown, not the top line: the dominant failure is calling a "misleading" claim flatly "false", a specific gap in the Judge prompt, not a vague limitation.</div>
-      <figure class="shot">
-        <img src="https://raw.githubusercontent.com/udit-rawat/tribunal/main/docs/media/demo.gif" alt="Tribunal CLI run: two agents arguing a claim over retrieved evidence, a fabricated quote struck from the record, and a final verdict with confidence score" loading="lazy">
-        <figcaption>Real run: sub-claims, parallel retrieval, a fabricated quote struck from the record, verdict.</figcaption>
-      </figure>
-      <div class="stack"><span>Python</span><span>LangGraph</span><span>MCP</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/glassbox">glassbox</a></h3></div>
-      <div class="live"><a href="https://udit-rawat.github.io/glassbox/">Live demo</a></div>
-      <ul class="highlights">
-        <li>GPT built from scratch in pure PyTorch, no HuggingFace</li>
-        <li>Attention, RoPE, SwiGLU, grouped-query attention, a from-scratch BPE tokenizer</li>
-        <li>12% fewer parameters, better validation loss, a live attention visualizer</li>
-      </ul>
-      <div class="desc">A GPT built from first principles in pure PyTorch, no HuggingFace. Attention, RMSNorm, RoPE, SwiGLU, grouped-query attention and a from-scratch BPE tokenizer, each tested before the next was added. A same-seed ablation improved validation loss with <strong>12% fewer parameters</strong>. Ships with a live attention visualizer whose architecture diagram is generated from the model config, not hand-drawn.</div>
-      <div class="stack"><span>Python</span><span>PyTorch</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/planrail">planrail</a></h3></div>
-      <ul class="highlights">
-        <li>Model proposes a plan, code validates it against real coaching constraints</li>
-        <li>Zero extra LLM calls to resolve every violation on both test fixtures</li>
-        <li>Repair before regenerate, not a model re-grading itself</li>
-      </ul>
-      <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. <strong>Resolves every constraint violation at zero extra LLM calls</strong> on both test fixtures: repair before regenerate, not a model re-grading itself.</div>
-      <div class="flow" aria-hidden="true">
-        <span class="step">Model proposes plan</span><span class="arrow">&rarr;</span>
-        <span class="step">Code validates<span class="cap">against real constraints</span></span><span class="arrow">&rarr;</span>
-        <span class="step">Code repairs<span class="cap">what it safely can</span></span><span class="arrow">&rarr;</span>
-        <span class="step">Model sees only the rest<span class="cap">0 extra calls, both fixtures</span></span>
-      </div>
-      <div class="stack"><span>Python</span><span>Agentic Pipelines</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/ContextLab">Context Lab</a></h3></div>
-      <ul class="highlights">
-        <li>Built 4 retrieval strategies to test a competitor's claim independently</li>
-        <li>97.9% token reduction at statistically tied quality</li>
-        <li>Reported the tie instead of the more convenient result</li>
-      </ul>
-      <div class="desc">Built to independently verify a RAG-compression product's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Built four retrieval strategies and measured them on a 14-question, 56-run benchmark against full-context stuffing (126K tokens) as the baseline: top-8 retrieval cut that to 2.7K tokens, a <strong>97.9% reduction</strong>, at statistically indistinguishable quality, every gap between strategies fell inside the measured variance. Cost separated the strategies; quality didn't. One caveat up front: this isn't the same experiment as the 60&ndash;80% marketing number, different baseline, different task, so it's not a direct comparison, just a result that rhymes with it.</div>
-      <div class="bars" role="img" aria-label="Tokens used per context strategy on a 14-question benchmark: full stuffing 126,053, structure-aware 21,890, retrieve and rerank 2,668, top-8 vector 2,655">
-        <div class="bar-row"><div class="bar-label">Full stuffing</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">126,053 tok</div></div>
-        <div class="bar-row"><div class="bar-label">Structure-aware</div><div class="bar-track"><div class="bar-fill" style="width:17.4%"></div></div><div class="bar-value">21,890 tok</div></div>
-        <div class="bar-row"><div class="bar-label">Retrieve + rerank</div><div class="bar-track"><div class="bar-fill" style="width:2.1%"></div></div><div class="bar-value">2,668 tok</div></div>
-        <div class="bar-row"><div class="bar-label">Top-8 (baseline)</div><div class="bar-track"><div class="bar-fill win" style="width:2.1%"></div></div><div class="bar-value">2,655 tok</div></div>
-      </div>
-      <div class="stack"><span>Python</span><span>RAG Evals</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3></div>
-      <ul class="highlights">
-        <li>From-scratch HRM reproduction (arXiv:2506.21734): a slow planner, a fast executor</li>
-        <li>100% maze-path accuracy, 66.7% fewer compute steps via ACT halting</li>
-        <li>A documented negative result on 9&times;9 Sudoku, not hidden</li>
-      </ul>
-      <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. <strong>100% path accuracy on 5&times;5 maze pathfinding</strong> by epoch 20, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments. On a simple arithmetic task a flat RNN beats it outright, 7.5K params to 17K, lower loss: hierarchy only pays off once the task actually needs it. 9&times;9 Sudoku is the counterexample where it doesn't: 15.9% cell accuracy against an 11.1% random baseline, a real architectural gap, root-caused and documented rather than hidden.</div>
-      <figure class="shot">
-        <img src="https://raw.githubusercontent.com/udit-rawat/hierarchical-reasoner/main/assets/training_curves_maze.png" alt="Training curves for HRM on 5x5 maze pathfinding: loss, cell accuracy, and path accuracy all converging to 100% by epoch 20" loading="lazy">
-        <figcaption>Loss, cell accuracy, and path accuracy across 50 epochs, 5&times;5 maze pathfinding.</figcaption>
-      </figure>
-      <div class="stack"><span>Python</span><span>PyTorch</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/muscle-memory">muscle-memory</a></h3></div>
-      <ul class="highlights">
-        <li>Learns a UI task once, replays it deterministically with no model after that</li>
-        <li>Hands control to a human mid-task when it can't proceed safely</li>
-        <li>17 reproducible scenarios on committed evidence, including a 20/20 stability run with zero drift</li>
-      </ul>
-      <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. Replay returns success, a named business outcome (e.g. MEMBER_NOT_FOUND, not a crash), or a debuggable failure. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable faults: the committed evidence covers <strong>17 reproducible scenarios</strong>, from an unknown popup learned as a recoverable detector to a session expiry mid-flow to a human taking over a live session and handing it back. The last of the 17 is a 20-run stability replay: <strong>20/20 success, zero drift</strong>.</div>
-      <figure class="shot">
-        <img src="https://raw.githubusercontent.com/udit-rawat/muscle-memory/main/evidence/01_discovery_savings_balance/screenshots/final.png" alt="The deliberately legacy mock core-banking app used as the test target, showing a member summary screen with framesets and table layouts" loading="lazy">
-        <figcaption>The actual test target: a deliberately legacy mock core-banking app, framesets and table layouts included.</figcaption>
-      </figure>
-      <div class="stack"><span>Python</span><span>Playwright</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/RepoSignal">RepoSignal</a></h3></div>
-      <ul class="highlights">
-        <li>Chrome extension scoring any GitHub repo before you depend on it</li>
-        <li>No AI, no servers: every score computes locally and is reproducible</li>
-        <li>Weights are tunable, exportable, and locked by a test suite</li>
-      </ul>
-      <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency: maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable. A locked test suite pins the band edges and risk wording so the model can't silently drift.</div>
-      <div class="shot-pair">
-        <img src="https://raw.githubusercontent.com/udit-rawat/RepoSignal/main/store/screenshot-1-report.jpg" alt="RepoSignal report view showing a repo trust score broken into six weighted signals" loading="lazy">
-        <img src="https://raw.githubusercontent.com/udit-rawat/RepoSignal/main/store/screenshot-2-panel.png" alt="RepoSignal side panel showing a score badge next to a GitHub repo" loading="lazy">
-      </div>
-      <div class="stack"><span>JavaScript</span><span>Chrome Extension</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3></div>
-      <ul class="highlights">
-        <li>One JSON spec becomes narration, word-locked animation, and a rendered MP4</li>
-        <li>A Claude Code hook blocks render until the motion gate passes</li>
-        <li>No stock zoom-ins, no bounce, nothing repeated from the last 3 reels</li>
-      </ul>
-      <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4, with no manual keyframing. A render is blocked by a Claude Code hook until a mechanical motion gate passes: no stock zoom-ins, no bounce, nothing repeated from the last three reels. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
-      <div class="flow" aria-hidden="true">
-        <span class="step">spec.json<span class="cap">single source of truth</span></span><span class="arrow">&rarr;</span>
-        <span class="step">Gemini TTS<span class="cap">one read, never stretched</span></span><span class="arrow">&rarr;</span>
-        <span class="step">word timings<span class="cap">transcribed</span></span><span class="arrow">&rarr;</span>
-        <span class="step">HTML + GSAP<span class="cap">hand-built, word-locked</span></span><span class="arrow">&rarr;</span>
-        <span class="step">gates + QA<span class="cap">mechanical, blocks bad renders</span></span><span class="arrow">&rarr;</span>
-        <span class="step">MP4<span class="cap">seek-rendered</span></span>
-      </div>
-      <div class="stack"><span>Python</span><span>GSAP</span></div>
-    </div>
-  </section>
+    <p class="player-hint">Drag the wheel, swipe, or use arrow keys. Press the center button to open, MENU to go back.</p>
+  </div>
 
   <footer>
     More on <a href="https://github.com/udit-rawat">github.com/udit-rawat</a> &middot; full resume at <a href="../">udit-rawat.github.io/resume</a>
   </footer>
 
 </div>
+
+<script>
+(function () {
+  var items = [
+    {
+      kind: 'Experience', title: 'Node Solutions', sub: 'Sep 2026&ndash;present',
+      bodyHTML:
+        '<div class="pd-title">Independent AI Engineer, Node Solutions</div>' +
+        '<div class="pd-meta">Sep 2026&ndash;present</div>' +
+        '<div class="desc">Remote contract engineering for client projects: LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>'
+    },
+    {
+      kind: 'Experience', title: 'TapHealth', sub: 'Feb 2025&ndash;Jul 2026',
+      bodyHTML:
+        '<div class="pd-title">AI Engineer, TapHealth</div>' +
+        '<div class="pd-meta">Feb 2025&ndash;Jul 2026</div>' +
+        '<div class="desc">AI Engineer from Apr 2025, previously AI Intern from Feb 2025, promoted after 2 months.</div>' +
+        '<ul class="sub">' +
+        '<li>Built and shipped an offline diabetes guidance SLM running fully on device on Snapdragon 680 hardware, in partnership with Eli Lilly: a LoRA fine-tuned Qwen 0.6B/1.5B, GGUF Q4_K_M quantized, with a separate ONNX INT8 classifier trained just to catch out-of-distribution questions. 380 MB, under 890ms latency at 25 tok/s, 98% accuracy on out-of-distribution refusal.</li>' +
+        '<li>Built a stateful 5 agent coaching system with LangGraph and Mem0/Hindsight memory across 25 tools. An async OCR pipeline over SSE WebSockets cut report processing from 40s to 15s.</li>' +
+        '<li>Cut LLM costs 54% by designing a centralized LiteLLM gateway routing 65+ agentic workflows across OpenAI, Anthropic, and open source models, with structured outputs via Instructor and full Langfuse tracing.</li>' +
+        '</ul>'
+    },
+    {
+      kind: 'Experience', title: 'IIT Kanpur', sub: 'Jul 2024&ndash;Oct 2024',
+      bodyHTML:
+        '<div class="pd-title">Project Intern, IIT Kanpur</div>' +
+        '<div class="pd-meta">Jul 2024&ndash;Oct 2024</div>' +
+        '<div class="desc">Perception &amp; Intelligence Lab. Curated a 200K+ image dataset and optimized a diffusion-based inpainting model against it, reaching 11.72 dB PSNR and 0.41 SSIM on held-out masks.</div>'
+    },
+    {
+      kind: 'Project', title: 'Tribunal', sub: '96% quote grounding, 83% polarity accuracy',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/tribunal" target="_blank" rel="noopener">Tribunal</a></div>' +
+        '<ul class="highlights">' +
+        '<li>Prosecutor and Defender argue opposite sides, a deterministic verifier checks every quote</li>' +
+        '<li>96% quote grounding, 83% polarity accuracy on 32 hand-labelled claims</li>' +
+        '<li>Ships as CLI, streaming web UI, and MCP server</li>' +
+        '</ul>' +
+        '<div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules, so no LLM grades its own output. On a 32-claim balanced set (29 scored; 3 excluded as API errors): <strong>96% quote grounding, 83% polarity accuracy, 66% strict accuracy</strong>. The dominant failure is calling a "misleading" claim flatly "false", a specific gap in the Judge prompt.</div>' +
+        '<figure class="shot"><img src="https://raw.githubusercontent.com/udit-rawat/tribunal/main/docs/media/demo.gif" alt="Tribunal CLI run: two agents arguing a claim, a fabricated quote struck from the record, and a verdict" loading="lazy"><figcaption>Real run: sub-claims, parallel retrieval, a fabricated quote struck from the record, verdict.</figcaption></figure>' +
+        '<div class="stack"><span>Python</span><span>LangGraph</span><span>MCP</span></div>'
+    },
+    {
+      kind: 'Project', title: 'glassbox', sub: '12% fewer parameters, live attention visualizer',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/glassbox" target="_blank" rel="noopener">glassbox</a></div>' +
+        '<div class="pd-live"><a href="https://udit-rawat.github.io/glassbox/" target="_blank" rel="noopener">Live demo</a></div>' +
+        '<ul class="highlights">' +
+        '<li>GPT built from scratch in pure PyTorch, no HuggingFace</li>' +
+        '<li>Attention, RoPE, SwiGLU, grouped-query attention, a from-scratch BPE tokenizer</li>' +
+        '<li>12% fewer parameters, better validation loss, a live attention visualizer</li>' +
+        '</ul>' +
+        '<div class="desc">A GPT built from first principles in pure PyTorch, no HuggingFace. Attention, RMSNorm, RoPE, SwiGLU, grouped-query attention and a from-scratch BPE tokenizer, each tested before the next was added. A same-seed ablation improved validation loss with <strong>12% fewer parameters</strong>.</div>' +
+        '<div class="stack"><span>Python</span><span>PyTorch</span></div>'
+    },
+    {
+      kind: 'Project', title: 'planrail', sub: 'Zero extra LLM calls, both fixtures',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/planrail" target="_blank" rel="noopener">planrail</a></div>' +
+        '<ul class="highlights">' +
+        '<li>Model proposes a plan, code validates it against real coaching constraints</li>' +
+        '<li>Zero extra LLM calls to resolve every violation on both test fixtures</li>' +
+        '<li>Repair before regenerate, not a model re-grading itself</li>' +
+        '</ul>' +
+        '<div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can\'t fix is sent back to the model. <strong>Resolves every constraint violation at zero extra LLM calls</strong> on both test fixtures.</div>' +
+        '<div class="flow" aria-hidden="true">' +
+        '<span class="step">Model proposes plan</span><span class="arrow">&rarr;</span>' +
+        '<span class="step">Code validates<span class="cap">against real constraints</span></span><span class="arrow">&rarr;</span>' +
+        '<span class="step">Code repairs<span class="cap">what it safely can</span></span><span class="arrow">&rarr;</span>' +
+        '<span class="step">Model sees only the rest<span class="cap">0 extra calls</span></span>' +
+        '</div>' +
+        '<div class="stack"><span>Python</span><span>Agentic Pipelines</span></div>'
+    },
+    {
+      kind: 'Project', title: 'Context Lab', sub: '97.9% token reduction, tied quality',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/ContextLab" target="_blank" rel="noopener">Context Lab</a></div>' +
+        '<ul class="highlights">' +
+        '<li>Built 4 retrieval strategies to test a competitor\'s claim independently</li>' +
+        '<li>97.9% token reduction at statistically tied quality</li>' +
+        '<li>Reported the tie instead of the more convenient result</li>' +
+        '</ul>' +
+        '<div class="desc">Built to independently verify a RAG-compression product\'s marketing claim of 60&ndash;80% token reduction, rather than trust the pitch page. Measured 4 strategies against full-context stuffing (126K tokens) as the baseline: top-8 retrieval cut that to 2.7K tokens, a <strong>97.9% reduction</strong>, at statistically indistinguishable quality.</div>' +
+        '<div class="bars" role="img" aria-label="Tokens per strategy: full stuffing 126,053, structure-aware 21,890, retrieve and rerank 2,668, top-8 2,655">' +
+        '<div class="bar-row"><div class="bar-label">Full stuffing</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">126,053</div></div>' +
+        '<div class="bar-row"><div class="bar-label">Structure-aware</div><div class="bar-track"><div class="bar-fill" style="width:17.4%"></div></div><div class="bar-value">21,890</div></div>' +
+        '<div class="bar-row"><div class="bar-label">Retrieve+rerank</div><div class="bar-track"><div class="bar-fill" style="width:2.1%"></div></div><div class="bar-value">2,668</div></div>' +
+        '<div class="bar-row"><div class="bar-label">Top-8 (baseline)</div><div class="bar-track"><div class="bar-fill win" style="width:2.1%"></div></div><div class="bar-value">2,655</div></div>' +
+        '</div>' +
+        '<div class="stack"><span>Python</span><span>RAG Evals</span></div>'
+    },
+    {
+      kind: 'Project', title: 'Hierarchical Reasoner', sub: '100% maze accuracy, honest Sudoku negative',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/hierarchical-reasoner" target="_blank" rel="noopener">Hierarchical Reasoner</a></div>' +
+        '<ul class="highlights">' +
+        '<li>From-scratch HRM reproduction (arXiv:2506.21734)</li>' +
+        '<li>100% maze-path accuracy, 66.7% fewer compute steps via ACT halting</li>' +
+        '<li>A documented negative result on 9&times;9 Sudoku, not hidden</li>' +
+        '</ul>' +
+        '<div class="desc">From-scratch PyTorch reproduction of Sapient\'s Hierarchical Reasoning Model: a slow planner and a fast executor in a single forward pass. <strong>100% path accuracy on 5&times;5 maze pathfinding</strong>. 9&times;9 Sudoku is the counterexample: 15.9% cell accuracy against an 11.1% random baseline, root-caused and documented.</div>' +
+        '<figure class="shot"><img src="https://raw.githubusercontent.com/udit-rawat/hierarchical-reasoner/main/assets/training_curves_maze.png" alt="Training curves for HRM on 5x5 maze pathfinding converging to 100%" loading="lazy"><figcaption>Loss, cell accuracy, path accuracy across 50 epochs.</figcaption></figure>' +
+        '<div class="stack"><span>Python</span><span>PyTorch</span></div>'
+    },
+    {
+      kind: 'Project', title: 'muscle-memory', sub: '17 scenarios, 20/20 stability, zero drift',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/muscle-memory" target="_blank" rel="noopener">muscle-memory</a></div>' +
+        '<ul class="highlights">' +
+        '<li>Learns a UI task once, replays it deterministically with no model after that</li>' +
+        '<li>Hands control to a human mid-task when it can\'t proceed safely</li>' +
+        '<li>17 reproducible scenarios, including a 20/20 stability run with zero drift</li>' +
+        '</ul>' +
+        '<div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a capability that replays <strong>deterministically, with no model in the loop</strong>. The committed evidence covers 17 scenarios, ending in a 20-run stability replay: <strong>20/20 success, zero drift</strong>.</div>' +
+        '<figure class="shot"><img src="https://raw.githubusercontent.com/udit-rawat/muscle-memory/main/evidence/01_discovery_savings_balance/screenshots/final.png" alt="The deliberately legacy mock core-banking app used as the test target" loading="lazy"><figcaption>The actual test target: a deliberately legacy mock core-banking app.</figcaption></figure>' +
+        '<div class="stack"><span>Python</span><span>Playwright</span></div>'
+    },
+    {
+      kind: 'Project', title: 'RepoSignal', sub: 'No AI, no servers, fully reproducible',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/RepoSignal" target="_blank" rel="noopener">RepoSignal</a></div>' +
+        '<ul class="highlights">' +
+        '<li>Chrome extension scoring any GitHub repo before you depend on it</li>' +
+        '<li>No AI, no servers: every score computes locally and is reproducible</li>' +
+        '<li>Weights are tunable, exportable, and locked by a test suite</li>' +
+        '</ul>' +
+        '<div class="desc">Scores any GitHub repo\'s trustworthiness before you add it as a dependency: maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict.</div>' +
+        '<div class="shot-pair">' +
+        '<img src="https://raw.githubusercontent.com/udit-rawat/RepoSignal/main/store/screenshot-1-report.jpg" alt="RepoSignal report view" loading="lazy">' +
+        '<img src="https://raw.githubusercontent.com/udit-rawat/RepoSignal/main/store/screenshot-2-panel.png" alt="RepoSignal side panel" loading="lazy">' +
+        '</div>' +
+        '<div class="stack"><span>JavaScript</span><span>Chrome Extension</span></div>'
+    },
+    {
+      kind: 'Project', title: 'Animatic', sub: 'A hook blocks render until the motion gate passes',
+      bodyHTML:
+        '<div class="pd-title"><a href="https://github.com/udit-rawat/animatic" target="_blank" rel="noopener">Animatic</a></div>' +
+        '<ul class="highlights">' +
+        '<li>One JSON spec becomes narration, word-locked animation, and a rendered MP4</li>' +
+        '<li>A Claude Code hook blocks render until the motion gate passes</li>' +
+        '<li>No stock zoom-ins, no bounce, nothing repeated from the last 3 reels</li>' +
+        '</ul>' +
+        '<div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4, with no manual keyframing. Live demos at <a href="https://instagram.com/ada.max24" target="_blank" rel="noopener">@ada.max24</a>.</div>' +
+        '<div class="flow" aria-hidden="true">' +
+        '<span class="step">spec.json<span class="cap">source of truth</span></span><span class="arrow">&rarr;</span>' +
+        '<span class="step">Gemini TTS<span class="cap">one read</span></span><span class="arrow">&rarr;</span>' +
+        '<span class="step">word timings</span><span class="arrow">&rarr;</span>' +
+        '<span class="step">HTML+GSAP</span><span class="arrow">&rarr;</span>' +
+        '<span class="step">gates+QA</span><span class="arrow">&rarr;</span>' +
+        '<span class="step">MP4</span>' +
+        '</div>' +
+        '<div class="stack"><span>Python</span><span>GSAP</span></div>'
+    }
+  ];
+
+  var current = 0;
+  var mode = 'browse'; // 'browse' | 'detail'
+  var screen = document.getElementById('screen');
+  var screenFrame = document.getElementById('screenFrame');
+
+  function render() {
+    var it = items[current];
+    if (mode === 'browse') {
+      screen.innerHTML =
+        '<div class="screen-idx">' + (current + 1) + ' / ' + items.length + '</div>' +
+        '<div class="screen-kind">' + it.kind + '</div>' +
+        '<div class="screen-title">' + it.title + '</div>' +
+        '<div class="screen-sub">' + it.sub + '</div>' +
+        '<div class="screen-hint">Press select to open</div>';
+      screen.scrollTop = 0;
+    } else {
+      screen.innerHTML = it.bodyHTML;
+      screen.scrollTop = 0;
+    }
+    screenFrame.classList.remove('glow');
+    void screenFrame.offsetWidth;
+    screenFrame.classList.add('glow');
+  }
+
+  function next() { current = (current + 1) % items.length; render(); }
+  function prev() { current = (current - 1 + items.length) % items.length; render(); }
+  function select() { if (mode === 'browse') { mode = 'detail'; render(); } }
+  function menu() { if (mode === 'detail') { mode = 'browse'; render(); } }
+
+  document.getElementById('btnNext').addEventListener('click', function (e) { e.stopPropagation(); next(); });
+  document.getElementById('btnPrev').addEventListener('click', function (e) { e.stopPropagation(); prev(); });
+  document.getElementById('btnMenu').addEventListener('click', function (e) { e.stopPropagation(); menu(); });
+  document.getElementById('btnPlay').addEventListener('click', function (e) { e.stopPropagation(); select(); });
+  document.getElementById('btnSelect').addEventListener('click', function (e) { e.stopPropagation(); select(); });
+
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
+    else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); next(); }
+    else if (e.key === 'Enter') { e.preventDefault(); select(); }
+    else if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); menu(); }
+  });
+
+  // circular drag on desktop
+  var wheel = document.getElementById('wheel');
+  var dragging = false, lastAngle = 0, accum = 0;
+  var STEP = Math.PI / 7; // ~25.7 degrees per tick
+
+  function angleFromEvent(e) {
+    var r = wheel.getBoundingClientRect();
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    var x = (e.touches ? e.touches[0].clientX : e.clientX) - cx;
+    var y = (e.touches ? e.touches[0].clientY : e.clientY) - cy;
+    return Math.atan2(y, x);
+  }
+
+  function onDragStart(e) {
+    var target = e.target;
+    if (target.closest('.wheel-btn')) return;
+    dragging = true;
+    lastAngle = angleFromEvent(e);
+    accum = 0;
+  }
+  function onDragMove(e) {
+    if (!dragging) return;
+    var a = angleFromEvent(e);
+    var d = a - lastAngle;
+    if (d > Math.PI) d -= 2 * Math.PI;
+    if (d < -Math.PI) d += 2 * Math.PI;
+    accum += d;
+    lastAngle = a;
+    while (accum > STEP) { next(); accum -= STEP; }
+    while (accum < -STEP) { prev(); accum += STEP; }
+  }
+  function onDragEnd() { dragging = false; }
+
+  wheel.addEventListener('pointerdown', onDragStart);
+  window.addEventListener('pointermove', onDragMove);
+  window.addEventListener('pointerup', onDragEnd);
+
+  // vertical swipe on mobile (in addition to pointer drag, which also fires on touch as a fallback)
+  var touchStartY = null;
+  wheel.addEventListener('touchstart', function (e) {
+    if (e.target.closest('.wheel-btn')) return;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+  wheel.addEventListener('touchmove', function (e) {
+    if (touchStartY === null) return;
+    var y = e.touches[0].clientY;
+    var dy = touchStartY - y;
+    if (Math.abs(dy) > 40) {
+      if (dy > 0) next(); else prev();
+      touchStartY = y;
+    }
+  }, { passive: true });
+  wheel.addEventListener('touchend', function () { touchStartY = null; });
+
+  render();
+})();
+</script>
 </body>
 </html>
