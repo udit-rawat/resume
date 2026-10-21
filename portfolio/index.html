@@ -126,17 +126,33 @@
   .screen {
     position: relative; background: var(--screen-bg); border-radius: 6px;
     height: 190px; overflow-y: auto; -webkit-overflow-scrolling: touch;
-    padding: 14px 16px;
+    padding: 8px 8px 8px 10px;
     box-shadow: inset 0 0 18px rgba(0,0,0,.08);
+    font-family: "Work Sans", sans-serif;
   }
-  .screen-idx { font-size: 0.68rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
-  .screen-kind { font-size: 0.66rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 10px; }
-  .screen-title {
-    font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
-    font-size: 1.3rem; line-height: 1.12; color: var(--ink); margin-top: 4px;
+  .menu-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 2px 4px 7px 2px; margin-bottom: 3px; border-bottom: 1px solid rgba(21,24,26,.12);
   }
-  .screen-sub { font-size: 0.78rem; color: var(--ink-soft); margin-top: 8px; }
-  .screen-hint { font-size: 0.68rem; color: var(--ink-faint); margin-top: 16px; }
+  .menu-head .menu-title { font-size: 0.74rem; font-weight: 600; color: var(--ink-soft); }
+  .menu-head .batt { position: relative; width: 17px; height: 9px; border: 1px solid var(--ink-faint); border-radius: 2px; }
+  .menu-head .batt::before { content: ""; position: absolute; left: 1px; top: 1px; bottom: 1px; width: 65%; background: var(--accent); }
+  .menu-head .batt::after { content: ""; position: absolute; right: -3px; top: 2px; width: 2px; height: 3px; background: var(--ink-faint); }
+  .menu-list { list-style: none; margin: 0; padding: 0; }
+  .menu-divider {
+    font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--ink-faint); padding: 7px 6px 3px;
+  }
+  .menu-row {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    padding: 7px 7px; font-size: 0.85rem; color: var(--ink); border-radius: 3px; cursor: pointer;
+  }
+  .menu-row .chev { color: var(--ink-faint); font-size: 0.75rem; flex: none; }
+  .menu-row.selected {
+    background: linear-gradient(180deg, #7bb0f7 0%, #4680ea 48%, #2a5bca 100%);
+    color: #fff;
+  }
+  .menu-row.selected .chev { color: rgba(255,255,255,.85); }
   .pd-title {
     font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
     font-size: 1.55rem; line-height: 1.1; color: var(--ink);
@@ -249,7 +265,7 @@
         <button class="select-btn" id="btnSelect" aria-label="Select, open details"></button>
       </div>
     </div>
-    <p class="player-hint">Drag the wheel, swipe, or use arrow keys. Press the center button to open, MENU to go back.</p>
+    <p class="player-hint">Drag the wheel, swipe, use arrow keys, or just click a row. Press the center button to open, MENU to close.</p>
   </div>
 
   <div class="modal-backdrop" id="modalBackdrop">
@@ -304,7 +320,7 @@
         '<li>Ships as CLI, streaming web UI, and MCP server</li>' +
         '</ul>' +
         '<div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules, so no LLM grades its own output. On a 32-claim balanced set (29 scored; 3 excluded as API errors): <strong>96% quote grounding, 83% polarity accuracy, 66% strict accuracy</strong>. The dominant failure is calling a "misleading" claim flatly "false", a specific gap in the Judge prompt.</div>' +
-        '<figure class="shot"><img src="https://raw.githubusercontent.com/udit-rawat/tribunal/main/docs/media/demo.gif" alt="Tribunal CLI run: two agents arguing a claim, a fabricated quote struck from the record, and a verdict" loading="lazy"><figcaption>Real run: sub-claims, parallel retrieval, a fabricated quote struck from the record, verdict.</figcaption></figure>' +
+        '<figure class="shot"><img src="assets/tribunal-verdict.jpg" alt="Tribunal verdict card: False, 90% confidence, with 4 citations, 3 quotes verified, 1 stricken, 25.5s, $0.0022" loading="lazy"><figcaption>A real verdict: the Great Wall claim, false at 90% confidence, with 1 fabricated quote struck from the record.</figcaption></figure>' +
         '<div class="stack"><span>Python</span><span>LangGraph</span><span>MCP</span></div>'
     },
     {
@@ -432,18 +448,30 @@
   var btnSelect = document.getElementById('btnSelect');
 
   function renderScreen() {
-    var it = items[current];
+    var rows = items.map(function (it, i) {
+      var divider = '';
+      if (i === 0) divider = '<li class="menu-divider">Experience</li>';
+      if (i === 3) divider = '<li class="menu-divider">Selected Projects</li>';
+      var sel = i === current ? ' selected' : '';
+      return divider + '<li class="menu-row' + sel + '" data-i="' + i + '"><span>' + it.title + '</span><span class="chev">&#8250;</span></li>';
+    }).join('');
     screen.innerHTML =
-      '<div class="screen-idx">' + (current + 1) + ' / ' + items.length + '</div>' +
-      '<div class="screen-kind">' + it.kind + '</div>' +
-      '<div class="screen-title">' + it.title + '</div>' +
-      '<div class="screen-sub">' + it.sub + '</div>' +
-      '<div class="screen-hint">Press select to open</div>';
-    screen.scrollTop = 0;
+      '<div class="menu-head"><span class="menu-title">' + items[current].kind + '</span><span class="batt"></span></div>' +
+      '<ul class="menu-list" id="menuList">' + rows + '</ul>';
+    var selectedEl = screen.querySelector('.menu-row.selected');
+    if (selectedEl) selectedEl.scrollIntoView({ block: 'nearest' });
     screenFrame.classList.remove('glow');
     void screenFrame.offsetWidth;
     screenFrame.classList.add('glow');
   }
+
+  screen.addEventListener('click', function (e) {
+    var row = e.target.closest('.menu-row');
+    if (!row) return;
+    current = parseInt(row.getAttribute('data-i'), 10);
+    renderScreen();
+    openModal();
+  });
 
   function renderModalBody() {
     modalBody.innerHTML = items[current].bodyHTML;
