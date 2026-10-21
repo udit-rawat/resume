@@ -141,10 +141,14 @@ above, on this one device illustration only:
 
 - The screen bezel glows on every item change (an LCD's own backlight, tied to real
   interaction state, not a decorative halo scattered across unrelated cards).
-- The device body uses a metallic gradient, a resting drop-shadow, a glass-glare overlay
-  on the screen, and concave/convex shading on the wheel and select button, because it's
-  modeling a specific real object's real materials (brushed aluminum, glass, plastic),
-  not a generic rounded-rectangle-plus-shadow container used for no reason.
+- The device body uses a flat two-stop gradient and a resting drop-shadow, and the screen
+  has a faint glass-glare overlay. First pass over-did this (busy multi-stop diagonal
+  gradients, a glossy radial "spotlight" on the wheel and select button) and read as
+  plasticky rather than real. Corrected by pulling the actual computed CSS off a real
+  hand-built iPod recreation (tannerv.com/ipod, inspected live via devtools, not copied):
+  its wheel and select button are flat white with a single 1px grey border and at most one
+  big soft shadow, no gradients at all. Matched that restraint — the materials now read
+  real because there's less of them, not more.
 - It tilts in 3D on pointer hover and has a one-time 3D entrance animation, using a
   restrained, non-bounce easing curve (`cubic-bezier(.2,.8,.2,1)`), consistent with the
   motion rule above even while the surface treatment isn't.
