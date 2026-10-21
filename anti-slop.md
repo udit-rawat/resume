@@ -139,8 +139,6 @@ a scannable list, a deliberate choice for freelance/contract outreach rather tha
 recruiter ATS-scanning. It deliberately breaks the "no gradients, no shadows, ever" rule
 above, on this one device illustration only:
 
-- The screen bezel glows on every item change (an LCD's own backlight, tied to real
-  interaction state, not a decorative halo scattered across unrelated cards).
 - The device body uses a flat two-stop gradient and a resting drop-shadow, and the screen
   has a faint glass-glare overlay. First pass over-did this (busy multi-stop diagonal
   gradients, a glossy radial "spotlight" on the wheel and select button) and read as
@@ -158,6 +156,16 @@ above, on this one device illustration only:
   Corrected to match actual iPod OS convention (confirmed on the real reference): a plain
   list of rows, each with a small monochrome line-icon to the left of the text, same
   selection styling as every other list in the player. Less decoration, not more, again.
+- The teal screen-glow-on-change effect (the one thing still listed above as an
+  exception for a while) was cut entirely on direct feedback for being distracting.
+  Removing it took the exception list down, not up — the right direction.
+- The click-wheel icon glyphs and several exact material values (shell shadow, click-wheel
+  colors, center-button shadow math) are now taken directly from the real open-source
+  project behind the reference, github.com/tvillarete/ipod-classic-js (MIT License,
+  credited in a comment at the top of portfolio/index.html), rather than approximated from
+  devtools inspection. Wheel-button hit areas were also too small to be usable (as little
+  as ~12px tall, just the SVG's own bounding box) — padded to a real touch target size
+  without moving the visible icon, matching their own `padding: 12px` approach.
 
 The line: this treatment is confined to the one device illustration and its own modal. If
 gradients, shadows, or glow start showing up on plain content elsewhere on the site, that's

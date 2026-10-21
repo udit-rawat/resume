@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
+<!--
+  Click-wheel icon glyphs (rewind/fast-forward/play-pause) and several exact
+  CSS material values (shell gradient, click-wheel colors, center-button
+  shadow) are adapted from tvillarete/ipod-classic-js, MIT License.
+  Copyright (c) 2019 Tanner Villarete. https://github.com/tvillarete/ipod-classic-js
+-->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Udit Rawat &middot; AI Engineer</title>
@@ -98,12 +104,11 @@
   /* ---- player: a deliberate exception to the flat/no-shadow rule, see anti-slop.md ---- */
   .player { max-width: 300px; margin: 70px auto 0; user-select: none; }
   .device {
-    background: linear-gradient(180deg, #e8e8e6 0%, #d7d7d4 100%);
-    border: 1px solid #b9bab3; border-radius: 30px;
+    background: linear-gradient(180deg, #e3e3e3 0%, #d6d6d6 100%);
+    border-radius: 30px;
     padding: 20px 20px 26px;
-    box-shadow:
-      inset 0 0 34px rgba(0,0,0,.1),
-      0 30px 60px -25px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 38px #555;
+    -webkit-box-reflect: below 0px linear-gradient(to bottom, transparent, transparent 50%, rgba(250,250,250,.3));
     animation: deviceIntro .5s cubic-bezier(.2,.8,.2,1) both;
   }
   @keyframes deviceIntro {
@@ -113,10 +118,11 @@
   .screen-frame {
     position: relative; overflow: hidden;
     background: #000;
-    border-radius: 10px; padding: 4px;
+    border-radius: 8px; padding: 4px;
     transition: box-shadow .35s ease;
+    animation: screenPowerOn .5s;
   }
-  .screen-frame.glow { box-shadow: 0 0 34px 6px rgba(31,110,99,.5); }
+  @keyframes screenPowerOn { from { filter: brightness(0); } }
   .screen-frame::after {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.07) 50%, transparent 58%);
@@ -174,7 +180,10 @@
     color: #fff; font-family: "Fraunces", serif; font-weight: 600; font-size: 1.15rem;
     display: flex; align-items: center; justify-content: center;
     box-shadow: 0 3px 6px rgba(0,0,0,.22);
+    overflow: hidden;
   }
+  .preview-icon.logo { background: #fff; border: 1px solid #ddd; box-shadow: none; }
+  .preview-icon.logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .preview-kind {
     font-size: 0.58rem; font-weight: 600; text-transform: uppercase; letter-spacing: .06em;
     color: var(--screen-accent);
@@ -187,7 +196,7 @@
   }
   .pd-meta { font-size: 0.8rem; color: var(--ink-faint); margin-top: 5px; }
 
-  .wheel-wrap { position: relative; width: 210px; height: 210px; margin: 26px auto 0; }
+  .wheel-wrap { position: relative; width: 220px; height: 220px; margin: 26px auto 0; }
   .wheel {
     position: absolute; inset: 0; border-radius: 50%;
     background: #ffffff;
@@ -198,19 +207,24 @@
   .wheel-btn {
     position: absolute; background: none; border: none; cursor: pointer;
     font-family: "Work Sans", sans-serif; font-size: 0.66rem; font-weight: 600;
-    letter-spacing: .05em; color: var(--ink-soft); text-transform: uppercase;
+    letter-spacing: .05em; color: #afafaf; text-transform: uppercase;
+    display: flex; align-items: center; justify-content: center;
+    padding: 14px; touch-action: manipulation;
   }
   .wheel-btn:hover { color: var(--accent); }
-  .wheel-btn.menu { top: 14px; left: 50%; transform: translateX(-50%); }
-  .wheel-btn.prev { left: 16px; top: 50%; transform: translateY(-50%); font-size: 1rem; }
-  .wheel-btn.next { right: 16px; top: 50%; transform: translateY(-50%); font-size: 1rem; }
-  .wheel-btn.play { bottom: 14px; left: 50%; transform: translateX(-50%); font-size: 1rem; }
+  .wheel-btn:active { color: var(--accent); opacity: .7; }
+  .wheel-btn svg { display: block; width: 24px; height: auto; pointer-events: none; }
+  .wheel-btn.menu { top: 4px; left: 50%; transform: translateX(-50%); }
+  .wheel-btn.prev { left: 4px; top: 50%; transform: translateY(-50%); }
+  .wheel-btn.next { right: 4px; top: 50%; transform: translateY(-50%); }
+  .wheel-btn.play { bottom: 4px; left: 50%; transform: translateX(-50%); }
+  .wheel-btn.play svg { width: 26px; }
   .select-btn {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 78px; height: 78px; border-radius: 50%;
+    width: 90px; height: 90px; border-radius: 50%;
     background: #ffffff;
     border: 1px solid #b9b9b9; cursor: pointer;
-    box-shadow: inset 0 12px 38px rgba(191,191,191,.55);
+    box-shadow: inset 0 16px 48px rgb(191,191,191);
   }
   .select-btn:hover { background: #fcfcfc; }
   .select-btn:active { box-shadow: inset 0 12px 38px rgba(170,170,170,.8); }
@@ -268,7 +282,7 @@
     <nav>
       <a href="../">Resume</a>
       <a href="https://github.com/udit-rawat">GitHub</a>
-      <a href="https://www.linkedin.com/in/udit-rawat">LinkedIn</a>
+      <a href="https://linkedin.com/in/udit-r">LinkedIn</a>
       <a href="mailto:uditrawat1905@gmail.com">Email</a>
       <a href="../Udit_Rawat_AI_Engineer.pdf">Resume (PDF)</a>
     </nav>
@@ -283,9 +297,15 @@
       <div class="wheel-wrap">
         <div class="wheel" id="wheel">
           <button class="wheel-btn menu" id="btnMenu" aria-label="Menu, go back">MENU</button>
-          <button class="wheel-btn prev" id="btnPrev" aria-label="Previous">&#9198;</button>
-          <button class="wheel-btn next" id="btnNext" aria-label="Next">&#9197;</button>
-          <button class="wheel-btn play" id="btnPlay" aria-label="Select">&#9199;</button>
+          <button class="wheel-btn prev" id="btnPrev" aria-label="Previous">
+            <svg viewBox="0 0 33 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M17 8L29 1.0718V14.9282L17 8Z" fill="currentColor"/><path d="M4 8L16 1.0718V14.9282L4 8Z" fill="currentColor"/><rect x="4" y="16" width="4" height="15" transform="rotate(-180 4 16)" fill="currentColor"/></svg>
+          </button>
+          <button class="wheel-btn next" id="btnNext" aria-label="Next">
+            <svg viewBox="0 0 33 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 8L4 14.9282L4 1.0718L16 8Z" fill="currentColor"/><path d="M29 8L17 14.9282V1.0718L29 8Z" fill="currentColor"/><rect x="29" width="4" height="15" fill="currentColor"/></svg>
+          </button>
+          <button class="wheel-btn play" id="btnPlay" aria-label="Select">
+            <svg viewBox="0 0 39 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M18 9L4.5 16.7942L4.5 1.20577L18 9Z" fill="currentColor"/><rect x="26" y="1" width="4" height="16" fill="currentColor"/><rect x="35" y="1" width="4" height="16" fill="currentColor"/></svg>
+          </button>
         </div>
         <button class="select-btn" id="btnSelect" aria-label="Select, open details"></button>
       </div>
@@ -311,6 +331,7 @@
   var items = [
     {
       kind: 'Experience', title: 'Node Solutions', sub: 'Sep 2026&ndash;present',
+      logo: 'assets/node-solutions-logo.png',
       bodyHTML:
         '<div class="pd-title">Independent AI Engineer, Node Solutions</div>' +
         '<div class="pd-meta">Sep 2026&ndash;present</div>' +
@@ -318,6 +339,7 @@
     },
     {
       kind: 'Experience', title: 'TapHealth', sub: 'Feb 2025&ndash;Jul 2026',
+      logo: 'assets/taphealth-logo.png',
       bodyHTML:
         '<div class="pd-title">AI Engineer, TapHealth</div>' +
         '<div class="pd-meta">Feb 2025&ndash;Jul 2026</div>' +
@@ -330,6 +352,7 @@
     },
     {
       kind: 'Experience', title: 'IIT Kanpur', sub: 'Jul 2024&ndash;Oct 2024',
+      logo: 'assets/iitk-logo.png',
       bodyHTML:
         '<div class="pd-title">Project Intern, IIT Kanpur</div>' +
         '<div class="pd-meta">Jul 2024&ndash;Oct 2024</div>' +
@@ -476,7 +499,6 @@
   var current = 0;
   var modalOpen = false;
   var screen = document.getElementById('screen');
-  var screenFrame = document.getElementById('screenFrame');
   var modalBackdrop = document.getElementById('modalBackdrop');
   var modalCard = document.getElementById('modalCard');
   var modalBody = document.getElementById('modalBody');
@@ -509,7 +531,9 @@
           '<ul class="menu-list" id="menuList">' + rows + '</ul>' +
         '</div>' +
         '<div class="preview-pane">' +
-          '<div class="preview-icon">' + it.title.charAt(0).toUpperCase() + '</div>' +
+          (it.logo
+            ? '<div class="preview-icon logo"><img src="' + it.logo + '" alt="' + it.title + ' logo"></div>'
+            : '<div class="preview-icon">' + it.title.charAt(0).toUpperCase() + '</div>') +
           '<div class="preview-kind">' + it.kind + '</div>' +
           '<div class="preview-title">' + it.title + '</div>' +
           '<div class="preview-sub">' + it.sub + '</div>' +
@@ -517,9 +541,6 @@
       var selectedEl = screen.querySelector('.menu-row.selected');
       if (selectedEl) selectedEl.scrollIntoView({ block: 'nearest' });
     }
-    screenFrame.classList.remove('glow');
-    void screenFrame.offsetWidth;
-    screenFrame.classList.add('glow');
   }
 
   screen.addEventListener('click', function (e) {
