@@ -63,23 +63,67 @@ Sources: [AI Slop Pattern Catalog](https://cdn.jsdelivr.net/npm/pixelslop@0.3.8/
 **Hard data point:** an analysis of 500 Show HN sites found 28% used gradient
 backgrounds/titles and 23.5% used shadcn/ui completely uncustomized.
 
+## The 2026 catalog (the next wave, after everyone fled the 2025 tells)
+
+Sourced from a short-form video breakdown (transcribed + frame-checked, Oct 2026). The
+claim: everyone fled purple gradients, so AI-generated sites converged on a new, equally
+recognizable "sophisticated minimalist" default instead. Six tells:
+
+1. **Serif headline, half italic / half regular** — one key phrase in the hero line
+   italicized in a different weight or color than the rest ("Designing *thoughtful*
+   products that scale with intention.").
+2. **The font is Instrument Serif, ~90% of the time** — the specific go-to serif for
+   this look, the way Inter was the go-to sans for the old look.
+3. **Bone-and-orange color scheme** — warm off-white/cream background, a single
+   rust/terracotta/orange accent. The new neutral default, replacing purple-to-blue.
+4. **Eyebrow text over every title** — a small uppercase tracked-out label sitting
+   directly above every heading and every section title (e.g. a pill reading
+   "SELECTED WORK" above "Recent Projects").
+5. **Those icons** — a specific, instantly-recognizable generic icon set used for
+   feature bullets, the 2026 equivalent of icon-in-a-circle.
+6. **A card around everything** — every block, even plain text, wrapped in a
+   rounded-corner white card with a soft shadow, stacked on the same bone background.
+
+**Self-audit against this site, done honestly:** direct hits on #3 (bone paper `#faf6f0`
++ rust accent `#a8431f`, exactly the flagged combination) and #4 (an `.eyebrow` line
+above the h1, plus a small-caps `.section-label` above every section — structurally
+identical to the flagged pattern). Adjacent but not a direct hit on #2 (Fraunces is a
+different serif than Instrument Serif, but reaches for the same "elegant display serif"
+instinct by default). Clear on #1 (no mixed italic/regular within a heading), #5 (no
+icon set used anywhere), #6 (no card wrappers, ever). The lesson: avoiding the *previous*
+list of tells is not the same as avoiding genericness — the instinct that produces slop
+(reach for whatever reads as "tasteful" without specific reasoning) regenerates a new
+list of tells every cycle. The fix has to be a positive reason for each choice, not just
+a diff against the last catalog.
+
 ## How this site is designed against it
 
-Design direction as of the current pass: warm-paper editorial, not black/white terminal
-(that was an earlier pass — dropped because it didn't carry enough real visual craft,
-not because the anti-slop reasoning behind it was wrong).
+Design direction as of the current pass: cool stone paper with a deep teal accent, no
+eyebrow labels anywhere. (History: black/white terminal → dropped for lacking real visual
+craft; warm-paper/rust editorial → dropped because it turned out to be the *next* generic
+default, not because the anti-slop reasoning behind either earlier pass was wrong.)
 
 - No gradients, no shadows, no glassmorphism, no rounded-card grid — ever.
-- Typography is Fraunces (serif display) for headings and Work Sans for body — neither
-  is Inter/Roboto/Arial/system-ui. Distinctive on purpose.
-- One deliberate accent color (a rust/terracotta, #a8431f), used sparingly — not a
-  purple-to-blue gradient, not neon-on-dark.
-- Background is warm paper (#faf6f0), not stark #fff — text is a warm near-black, not
-  flat #000, and secondary text uses warm grays tied to the palette, not generic #666/#999.
+- No eyebrow labels. No small-caps tracked-out tag sitting above a heading or a section
+  title, anywhere on the page. A heading is just the heading.
+- Typography is Fraunces (serif display, not Instrument Serif) for headings and Work
+  Sans for body. Distinctive on purpose, and checked against the current go-to serif,
+  not just the old sans-serif defaults.
+- One deliberate accent color (a deep teal, #1f6e63), used sparingly — not bone-and-orange,
+  not a purple-to-blue gradient, not neon-on-dark. Chosen to read as technical/precise
+  rather than "warm creative portfolio," which also fits the actual content better.
+- Background is a cool pale stone (#f0f1ec), not bone/cream and not stark #fff — text is
+  a cool near-black, not flat #000, and secondary text uses grays tied to the palette,
+  not generic #666/#999.
 - Left-aligned, asymmetric layout — not everything centered.
 - No stock icons, no icon-in-circle, no decorative illustration or blob, no bordered
-  tag pills. Tags are just plain text separated by a middot.
-- Copy is specific to the actual work (real numbers, real repo names) — fails the
-  name-swap test on purpose, in the good direction.
-- Any illustration (e.g. a project-specific diagram) must depict something real and
-  specific to that project, not sit there as decoration.
+  tag pills, no card wrappers around plain content. Tags are just plain text separated
+  by a middot.
+- Copy is specific to the actual work (real numbers, real repo names, verified against
+  source READMEs) — fails the name-swap test on purpose, in the good direction.
+- Any illustration (a project-specific diagram, a real chart built from real benchmark
+  numbers, a real screenshot) must depict something real and specific to that project,
+  never sit there as decoration, and never use the rounded-box-plus-drop-shadow diagram
+  style that's its own AI-generated-diagram tell.
+- Every redesign pass gets checked against this file before shipping, and this file gets
+  updated the moment a new tell is identified, even one this site is already guilty of.
