@@ -18,7 +18,9 @@
   header { margin-bottom: 52px; }
   h1 { font-size: 1.9rem; font-weight: 400; letter-spacing: -0.01em; }
   .intro { margin-top: 18px; font-size: 1rem; color: #222; max-width: 56ch; }
-  nav { margin-top: 20px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.78rem; }
+  .status { margin-top: 14px; font-size: 0.93rem; color: #000; max-width: 56ch; }
+  .status .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #000; margin-right: 8px; vertical-align: middle; }
+  nav { margin-top: 22px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.78rem; }
   nav a { color: #000; text-decoration: none; border-bottom: 1px solid #000; padding-bottom: 1px; }
   nav a:hover { border-bottom-width: 2px; }
   nav span.sep { color: #999; margin: 0 10px; }
@@ -31,6 +33,8 @@
   h3 { font-size: 1.05rem; font-weight: 700; margin-top: 3px; }
   h3 a { color: #000; text-decoration: none; border-bottom: 1px solid #000; }
   h3 a:hover { border-bottom-width: 2px; }
+  .live { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.68rem; color: #666; margin-top: 3px; }
+  .live a { color: #666; }
   .desc { margin-top: 7px; font-size: 0.93rem; color: #222; }
   .desc a { color: #000; text-decoration: none; border-bottom: 1px solid #000; }
   .desc a:hover { border-bottom-width: 2px; }
@@ -49,12 +53,19 @@
   <header>
     <h1>Udit Rawat</h1>
     <p class="intro">I'm an AI engineer based in New Delhi. Most of my work lives in agentic systems, RAG, and the layer where a language model has to actually hold up in production, not just in a demo. Outside of work, I build things mostly to understand them properly. Reading about an architecture only gets me so far, so I tend to reproduce it, break it, and see where it actually fails. That's where most of the projects below came from.</p>
+    <p class="status"><span class="dot"></span>Currently available for contract and full-time AI engineering work.</p>
     <nav>
-      <a href="../">Resume</a><span class="sep">/</span><a href="https://github.com/udit-rawat">GitHub</a><span class="sep">/</span><a href="https://www.linkedin.com/in/udit-rawat">LinkedIn</a>
+      <a href="../">Resume</a><span class="sep">/</span><a href="https://github.com/udit-rawat">GitHub</a><span class="sep">/</span><a href="https://www.linkedin.com/in/udit-rawat">LinkedIn</a><span class="sep">/</span><a href="mailto:uditrawat1905@gmail.com">Email</a>
     </nav>
   </header>
 
   <h2>Experience</h2>
+
+  <div class="entry">
+    <div class="when">Sep 2026 to present</div>
+    <h3>Independent AI Engineer, Node Solutions</h3>
+    <div class="desc">Remote contract engineering for client projects — LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>
+  </div>
 
   <div class="entry">
     <div class="when">Feb 2025 to Jul 2026</div>
@@ -79,36 +90,57 @@
 
   <div class="entry">
     <h3><a href="https://github.com/udit-rawat/tribunal">Tribunal</a></h3>
-    <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence, a deterministic verifier strikes any quote not found verbatim in the source, and a Judge rules. 96% quote grounding on a 32-claim eval. Ships as CLI, streaming web UI, and MCP server.</div>
+    <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules &mdash; no LLM grades its own honesty. 96% quote grounding, 83% polarity accuracy on a 32-claim golden set. Ships as CLI, streaming web UI, and MCP server.</div>
     <div class="stack"><span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">MCP</span></div>
   </div>
 
   <div class="entry">
-    <h3><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3>
-    <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels. JSON spec &rarr; Gemini TTS &rarr; GSAP composition &rarr; MP4. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">GSAP</span></div>
+    <h3><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3>
+    <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. 100% maze-path accuracy, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments &mdash; plus an honest negative result on 9&times;9 Sudoku, root-caused and documented rather than hidden.</div>
+    <div class="stack"><span class="tag">Python</span><span class="tag">PyTorch</span></div>
+  </div>
+
+  <div class="entry">
+    <h3><a href="https://github.com/udit-rawat/ContextLab">Context Lab</a></h3>
+    <div class="live"><a href="https://context-lab-drab.vercel.app">Live demo</a></div>
+    <div class="desc">Built to independently verify a competitor's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Found 97.9% token reduction achievable on my own corpus &mdash; but all four retrieval strategies tied on answer quality once the variance was checked. Reported the tie honestly instead of the more convenient result.</div>
+    <div class="stack"><span class="tag">Python</span><span class="tag">RAG Evals</span></div>
+  </div>
+
+  <div class="entry">
+    <h3><a href="https://github.com/udit-rawat/planrail">planrail</a></h3>
+    <div class="live">Powers <a href="https://aitrainingplan.app">aitrainingplan.app</a></div>
+    <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. Resolves every constraint violation at zero extra LLM calls on both test fixtures &mdash; repair before regenerate, not a model re-grading itself.</div>
+    <div class="stack"><span class="tag">Python</span><span class="tag">Agentic Pipelines</span></div>
+  </div>
+
+  <div class="entry">
+    <h3><a href="https://github.com/udit-rawat/muscle-memory">muscle-memory</a></h3>
+    <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable runtime faults.</div>
+    <div class="stack"><span class="tag">Python</span><span class="tag">Playwright</span></div>
   </div>
 
   <div class="entry">
     <h3><a href="https://github.com/udit-rawat/glassbox">glassbox</a></h3>
-    <div class="desc">A GPT built from first principles in pure PyTorch, no HuggingFace. Attention, RMSNorm, RoPE, SwiGLU, grouped-query attention and a from-scratch BPE tokenizer, each tested before the next was added. A same-seed ablation improved validation loss with 12% fewer parameters. Ships with a <a href="https://udit-rawat.github.io/glassbox/">live attention visualizer</a> whose architecture diagram is generated from the model config, not hand-drawn.</div>
+    <div class="live"><a href="https://udit-rawat.github.io/glassbox/">Live demo</a></div>
+    <div class="desc">A GPT built from first principles in pure PyTorch, no HuggingFace. Attention, RMSNorm, RoPE, SwiGLU, grouped-query attention and a from-scratch BPE tokenizer, each tested before the next was added. A same-seed ablation improved validation loss with 12% fewer parameters. Ships with a live attention visualizer whose architecture diagram is generated from the model config, not hand-drawn.</div>
     <div class="stack"><span class="tag">Python</span><span class="tag">PyTorch</span></div>
   </div>
 
   <div class="entry">
     <h3><a href="https://github.com/udit-rawat/RepoSignal">RepoSignal</a></h3>
-    <div class="desc">Due diligence for every GitHub repo. Know before you clone. Local, reproducible scoring.</div>
-    <div class="stack"><span class="tag">JavaScript</span></div>
+    <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency &mdash; maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable.</div>
+    <div class="stack"><span class="tag">JavaScript</span><span class="tag">Chrome Extension</span></div>
   </div>
 
   <div class="entry">
-    <h3><a href="https://github.com/udit-rawat/Quest">Quest</a></h3>
-    <div class="desc">On-device RAG for fast coding problem lookup.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">DeepseekR1</span></div>
+    <h3><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3>
+    <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4 &mdash; no manual keyframing. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
+    <div class="stack"><span class="tag">Python</span><span class="tag">GSAP</span></div>
   </div>
 
   <footer>
-    Full resume: <a href="../">udit-rawat.github.io/resume</a> &middot; <a href="https://github.com/udit-rawat">github.com/udit-rawat</a>
+    More on <a href="https://github.com/udit-rawat">github.com/udit-rawat</a> &mdash; full resume: <a href="../">udit-rawat.github.io/resume</a>
   </footer>
 
 </div>
