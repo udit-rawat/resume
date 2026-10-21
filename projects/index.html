@@ -5,192 +5,204 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Udit Rawat, Projects</title>
 <meta name="description" content="Udit Rawat, AI Engineer. Experience and selected projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --paper: #faf6f0;
+    --ink: #1c1915;
+    --ink-soft: #52493e;
+    --ink-faint: #8c8171;
+    --accent: #a8431f;
+    --rule: #e4dbcc;
+  }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { background: var(--paper); }
   body {
-    font-family: "Georgia", "Times New Roman", serif;
-    background: #fff; color: #000;
-    line-height: 1.55;
-    padding: 64px 20px 90px;
+    font-family: "Work Sans", -apple-system, sans-serif;
+    background: var(--paper); color: var(--ink);
+    line-height: 1.6;
+    padding: 96px 24px 120px;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { max-width: 640px; margin: 0 auto; }
-  .mono { font-family: "SF Mono", Menlo, Consolas, monospace; }
+  .wrap { max-width: 680px; margin: 0 auto; }
+  a { color: var(--accent); }
 
-  header { margin-bottom: 52px; }
-  .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .ascii-mark {
-    font-family: "SF Mono", Menlo, Consolas, monospace;
-    font-size: clamp(0.56rem, 2.3vw, 1.25rem);
-    line-height: 1.15;
-    white-space: pre;
-    overflow-x: auto;
-    color: #000;
-    letter-spacing: 0;
+  .eyebrow {
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
   }
-  .intro { margin-top: 20px; font-size: 1rem; color: #222; max-width: 56ch; }
-
-  .term { margin-top: 18px; font-size: 0.85rem; max-width: 56ch; border: 1px solid #000; padding: 10px 14px; }
-  .term .line { white-space: pre-wrap; }
-  .term .prompt { color: #666; }
-  .term .out::before { content: "> "; color: #666; }
-
-  nav { margin-top: 22px; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.78rem; }
-  nav a { color: #000; text-decoration: none; border-bottom: 1px solid #000; padding-bottom: 1px; }
-  nav a:hover { border-bottom-width: 2px; }
-  nav span.sep { color: #999; margin: 0 10px; }
-
-  .section-head { display: flex; align-items: baseline; gap: 14px; margin-top: 52px; margin-bottom: 24px; }
-  .section-head:first-of-type { margin-top: 0; }
-  h2 { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
-  .rule { font-family: "SF Mono", Menlo, Consolas, monospace; flex: 1; overflow: hidden; white-space: nowrap; font-size: 0.8rem; color: #000; line-height: 1; }
-  .rule::after { content: "────────────────────────────────────────────────────────────────────────────────────────────────────────────────"; }
-
-  .entry { padding: 18px 0; border-bottom: 1px solid #ddd; }
-  .entry:last-child { border-bottom: none; }
-  .when { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.72rem; color: #666; }
-  h3 { font-size: 1.05rem; font-weight: 700; margin-top: 3px; }
-  h3 .mark { color: #999; font-weight: 400; margin-right: 2px; }
-  h3 a { color: #000; text-decoration: none; border-bottom: 1px solid #000; }
-  h3 a:hover { border-bottom-width: 2px; }
-  .live { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.68rem; color: #666; margin-top: 3px; }
-  .live a { color: #666; }
-  .diagram {
-    font-family: "SF Mono", Menlo, Consolas, monospace;
-    font-size: clamp(0.5rem, 2vw, 0.72rem);
-    line-height: 1.3;
-    white-space: pre;
-    overflow-x: auto;
-    color: #000;
-    margin-top: 12px;
-    padding: 10px 0;
+  h1 {
+    font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
+    font-size: clamp(2.6rem, 7vw, 4rem); line-height: 1.04; letter-spacing: -0.01em;
+    color: var(--ink);
   }
-  .desc { margin-top: 7px; font-size: 0.93rem; color: #222; }
-  .desc a { color: #000; text-decoration: none; border-bottom: 1px solid #000; }
-  .desc a:hover { border-bottom-width: 2px; }
-  .sub { margin: 6px 0 0 0; padding: 0; list-style: none; }
-  .sub li { font-size: 0.9rem; color: #333; margin-top: 6px; padding-left: 12px; border-left: 2px solid #ddd; }
-  .stack { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.66rem; border: 1px solid #000; padding: 2px 7px; color: #000; }
+  .intro {
+    margin-top: 26px; font-size: 1.14rem; line-height: 1.65; color: var(--ink-soft);
+    max-width: 52ch;
+  }
+  .intro a { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
 
-  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid #000; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.72rem; color: #666; }
-  footer a { color: #000; }
+  .status {
+    margin-top: 28px; display: flex; align-items: center; gap: 9px;
+    font-size: 0.95rem; color: var(--ink);
+  }
+  .status .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex: none; }
+
+  nav { margin-top: 34px; font-size: 0.92rem; display: flex; gap: 22px; flex-wrap: wrap; }
+  nav a { color: var(--ink-soft); text-decoration: none; }
+  nav a:hover { color: var(--accent); }
+
+  section { margin-top: 84px; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-faint); margin-bottom: 30px;
+  }
+
+  .entry { padding: 28px 0; border-top: 1px solid var(--rule); }
+  .entry:last-child { padding-bottom: 0; }
+  .entry-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .when { font-size: 0.82rem; color: var(--ink-faint); white-space: nowrap; }
+  h3 {
+    font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
+    font-size: 1.32rem; letter-spacing: -0.005em; color: var(--ink);
+  }
+  h3 a { color: var(--ink); text-decoration: none; }
+  h3 a:hover { color: var(--accent); }
+  .live { font-size: 0.85rem; margin-top: 6px; }
+  .live a { text-decoration: none; border-bottom: 1px solid currentColor; }
+  .desc { margin-top: 10px; font-size: 1rem; line-height: 1.62; color: var(--ink-soft); max-width: 58ch; }
+  .desc a { color: var(--ink); text-decoration-color: var(--accent); }
+  .desc strong { color: var(--ink); font-weight: 600; }
+  .sub { margin: 12px 0 0 0; padding: 0; list-style: none; max-width: 58ch; }
+  .sub li {
+    font-size: 0.95rem; color: var(--ink-soft); margin-top: 9px; padding-left: 16px; position: relative;
+  }
+  .sub li::before { content: "—"; position: absolute; left: 0; color: var(--ink-faint); }
+  .stack { margin-top: 14px; font-size: 0.82rem; color: var(--ink-faint); }
+  .stack span:not(:last-child)::after { content: " · "; }
+
+  footer {
+    margin-top: 90px; padding-top: 28px; border-top: 1px solid var(--rule);
+    font-size: 0.88rem; color: var(--ink-faint);
+  }
+  footer a { color: var(--ink-soft); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  footer a:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 480px) {
+    body { padding: 64px 20px 90px; }
+    .entry-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <header>
-    <h1 class="visually-hidden">Udit Rawat</h1>
-    <pre class="ascii-mark" aria-hidden="true"> _   _ ___ ___ _____   ___    ___      ___ _____
-| | | |   \_ _|_   _| | _ \  /_\ \    / /_\_   _|
-| |_| | |) | |  | |   |   / / _ \ \/\/ / _ \| |
- \___/|___/___| |_|   |_|_\/_/ \_\_/\_/_/ \_\_|  </pre>
-    <p class="intro">I'm an AI engineer based in New Delhi. Most of my work lives in agentic systems, RAG, and the layer where a language model has to actually hold up in production, not just in a demo. Outside of work, I build things mostly to understand them properly. Reading about an architecture only gets me so far, so I tend to reproduce it, break it, and see where it actually fails. That's where most of the projects below came from.</p>
-    <div class="term">
-      <div class="line prompt">$ status --current</div>
-      <div class="line out">available for contract and full-time AI engineering work</div>
-      <div class="line out">reach me at uditrawat1905@gmail.com</div>
-    </div>
+    <div class="eyebrow">AI Engineer &middot; New Delhi</div>
+    <h1>Udit Rawat</h1>
+    <p class="intro">Most of my work lives in agentic systems, RAG, and the layer where a language model has to actually hold up in production, not just in a demo. Outside of work, I build things mostly to understand them properly — reproduce an architecture, break it, see where it actually fails. That's where most of the projects below came from.</p>
+    <p class="status"><span class="dot"></span>Currently available for contract and full-time work</p>
     <nav>
-      <a href="../">Resume</a><span class="sep">/</span><a href="https://github.com/udit-rawat">GitHub</a><span class="sep">/</span><a href="https://www.linkedin.com/in/udit-rawat">LinkedIn</a><span class="sep">/</span><a href="mailto:uditrawat1905@gmail.com">Email</a>
+      <a href="../">Resume</a>
+      <a href="https://github.com/udit-rawat">GitHub</a>
+      <a href="https://www.linkedin.com/in/udit-rawat">LinkedIn</a>
+      <a href="mailto:uditrawat1905@gmail.com">Email</a>
     </nav>
   </header>
 
-  <div class="section-head"><h2>Experience</h2><span class="rule"></span></div>
+  <section>
+    <div class="section-label">Experience</div>
 
-  <div class="entry">
-    <div class="when">Sep 2026 to present</div>
-    <h3>Independent AI Engineer, Node Solutions</h3>
-    <div class="desc">Remote contract engineering for client projects — LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>
-  </div>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Independent AI Engineer, Node Solutions</h3>
+        <div class="when">Sep 2026 — present</div>
+      </div>
+      <div class="desc">Remote contract engineering for client projects — LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>
+    </div>
 
-  <div class="entry">
-    <div class="when">Feb 2025 to Jul 2026</div>
-    <h3>AI Engineer, TapHealth</h3>
-    <div class="desc">AI Engineer from Apr 2025, previously AI Intern from Feb 2025, promoted after 2 months.</div>
-    <ul class="sub">
-      <li>Built and shipped an offline diabetes guidance SLM running fully on device on Snapdragon 680 hardware, in partnership with Eli Lilly. 380 MB, under 890ms latency at 25 tok/s, 98% accuracy on out of distribution refusal.</li>
-      <li>Built a stateful 5 agent coaching system with LangGraph and Mem0/Hindsight memory across 25 tools. An async OCR pipeline over SSE WebSockets cut report processing from 40s to 15s.</li>
-      <li>Cut LLM costs 54% by designing a centralized LiteLLM gateway routing 65+ agentic workflows across OpenAI, Anthropic, and open source models, with structured outputs via Instructor and full Langfuse tracing.</li>
-      <li>Rebuilt an 812 line rules based nudge pipeline into a decoupled DSPy architecture (strategy classifier separated from content generator), serving 5K+ users.</li>
-      <li>Started as AI Intern: built ARIMA, SARIMA, and LSTM forecasting models for patient engagement, and generated synthetic clinical data using NHANES and Q learning.</li>
-    </ul>
-  </div>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>AI Engineer, TapHealth</h3>
+        <div class="when">Feb 2025 — Jul 2026</div>
+      </div>
+      <div class="desc">AI Engineer from Apr 2025, previously AI Intern from Feb 2025, promoted after 2 months.</div>
+      <ul class="sub">
+        <li>Built and shipped an offline diabetes guidance SLM running fully on device on Snapdragon 680 hardware, in partnership with Eli Lilly. 380 MB, under 890ms latency at 25 tok/s, 98% accuracy on out of distribution refusal.</li>
+        <li>Built a stateful 5 agent coaching system with LangGraph and Mem0/Hindsight memory across 25 tools. An async OCR pipeline over SSE WebSockets cut report processing from 40s to 15s.</li>
+        <li>Cut LLM costs 54% by designing a centralized LiteLLM gateway routing 65+ agentic workflows across OpenAI, Anthropic, and open source models, with structured outputs via Instructor and full Langfuse tracing.</li>
+        <li>Rebuilt an 812 line rules based nudge pipeline into a decoupled DSPy architecture (strategy classifier separated from content generator), serving 5K+ users.</li>
+        <li>Started as AI Intern: built ARIMA, SARIMA, and LSTM forecasting models for patient engagement, and generated synthetic clinical data using NHANES and Q learning.</li>
+      </ul>
+    </div>
 
-  <div class="entry">
-    <div class="when">Jul 2024 to Oct 2024</div>
-    <h3>Project Intern, Perception &amp; Intelligence Lab, IIT Kanpur</h3>
-    <div class="desc">Curated a 200K+ image dataset and optimized diffusion based inpainting models, achieving 11.72 dB PSNR and 0.41 SSIM.</div>
-  </div>
+    <div class="entry">
+      <div class="entry-head">
+        <h3>Project Intern, IIT Kanpur</h3>
+        <div class="when">Jul 2024 — Oct 2024</div>
+      </div>
+      <div class="desc">Perception &amp; Intelligence Lab. Curated a 200K+ image dataset and optimized diffusion based inpainting models, achieving 11.72 dB PSNR and 0.41 SSIM.</div>
+    </div>
+  </section>
 
-  <div class="section-head"><h2>Selected Projects</h2><span class="rule"></span></div>
+  <section>
+    <div class="section-label">Selected Projects</div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/tribunal">Tribunal</a></h3>
-    <pre class="diagram" aria-hidden="true">                 CLAIM
-                   │
-         ┌─────────┴─────────┐
-         │                   │
-    PROSECUTOR           DEFENDER
-         │                   │
-         └─────────┬─────────┘
-                   │
-              ┌─────────┐
-              │  VERIFY │
-              │ quotes  │
-              └────┬────┘
-                   │
-                VERDICT</pre>
-    <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules &mdash; no LLM grades its own honesty. 96% quote grounding, 83% polarity accuracy on a 32-claim golden set. Ships as CLI, streaming web UI, and MCP server.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">MCP</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/tribunal">Tribunal</a></h3></div>
+      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules &mdash; no LLM grades its own honesty. <strong>96% quote grounding, 83% polarity accuracy</strong> on a 32-claim golden set. Ships as CLI, streaming web UI, and MCP server.</div>
+      <div class="stack"><span>Python</span><span>LangGraph</span><span>MCP</span></div>
+    </div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3>
-    <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. 100% maze-path accuracy, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments &mdash; plus an honest negative result on 9&times;9 Sudoku, root-caused and documented rather than hidden.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">PyTorch</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3></div>
+      <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. <strong>100% maze-path accuracy</strong>, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments &mdash; plus an honest negative result on 9&times;9 Sudoku, root-caused and documented rather than hidden.</div>
+      <div class="stack"><span>Python</span><span>PyTorch</span></div>
+    </div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/ContextLab">Context Lab</a></h3>
-    <div class="desc">Built to independently verify a competitor's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Found 97.9% token reduction achievable on my own corpus &mdash; but all four retrieval strategies tied on answer quality once the variance was checked. Reported the tie honestly instead of the more convenient result.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">RAG Evals</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/ContextLab">Context Lab</a></h3></div>
+      <div class="desc">Built to independently verify a competitor's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Found <strong>97.9% token reduction</strong> achievable on my own corpus &mdash; but all four retrieval strategies tied on answer quality once the variance was checked. Reported the tie honestly instead of the more convenient result.</div>
+      <div class="stack"><span>Python</span><span>RAG Evals</span></div>
+    </div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/planrail">planrail</a></h3>
-    <div class="live">Powers <a href="https://aitrainingplan.app">aitrainingplan.app</a></div>
-    <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. Resolves every constraint violation at zero extra LLM calls on both test fixtures &mdash; repair before regenerate, not a model re-grading itself.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">Agentic Pipelines</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/planrail">planrail</a></h3></div>
+      <div class="live">Powers <a href="https://aitrainingplan.app">aitrainingplan.app</a></div>
+      <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. <strong>Resolves every constraint violation at zero extra LLM calls</strong> on both test fixtures &mdash; repair before regenerate, not a model re-grading itself.</div>
+      <div class="stack"><span>Python</span><span>Agentic Pipelines</span></div>
+    </div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/muscle-memory">muscle-memory</a></h3>
-    <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable runtime faults.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">Playwright</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/muscle-memory">muscle-memory</a></h3></div>
+      <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable runtime faults.</div>
+      <div class="stack"><span>Python</span><span>Playwright</span></div>
+    </div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/glassbox">glassbox</a></h3>
-    <div class="live"><a href="https://udit-rawat.github.io/glassbox/">Live demo</a></div>
-    <div class="desc">A GPT built from first principles in pure PyTorch, no HuggingFace. Attention, RMSNorm, RoPE, SwiGLU, grouped-query attention and a from-scratch BPE tokenizer, each tested before the next was added. A same-seed ablation improved validation loss with 12% fewer parameters. Ships with a live attention visualizer whose architecture diagram is generated from the model config, not hand-drawn.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">PyTorch</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/glassbox">glassbox</a></h3></div>
+      <div class="live"><a href="https://udit-rawat.github.io/glassbox/">Live demo</a></div>
+      <div class="desc">A GPT built from first principles in pure PyTorch, no HuggingFace. Attention, RMSNorm, RoPE, SwiGLU, grouped-query attention and a from-scratch BPE tokenizer, each tested before the next was added. A same-seed ablation improved validation loss with <strong>12% fewer parameters</strong>. Ships with a live attention visualizer whose architecture diagram is generated from the model config, not hand-drawn.</div>
+      <div class="stack"><span>Python</span><span>PyTorch</span></div>
+    </div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/RepoSignal">RepoSignal</a></h3>
-    <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency &mdash; maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable.</div>
-    <div class="stack"><span class="tag">JavaScript</span><span class="tag">Chrome Extension</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/RepoSignal">RepoSignal</a></h3></div>
+      <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency &mdash; maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable.</div>
+      <div class="stack"><span>JavaScript</span><span>Chrome Extension</span></div>
+    </div>
 
-  <div class="entry">
-    <h3><span class="mark">▸</span><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3>
-    <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4 &mdash; no manual keyframing. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
-    <div class="stack"><span class="tag">Python</span><span class="tag">GSAP</span></div>
-  </div>
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3></div>
+      <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4 &mdash; no manual keyframing. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
+      <div class="stack"><span>Python</span><span>GSAP</span></div>
+    </div>
+  </section>
 
   <footer>
-    More on <a href="https://github.com/udit-rawat">github.com/udit-rawat</a> &mdash; full resume: <a href="../">udit-rawat.github.io/resume</a>
+    More on <a href="https://github.com/udit-rawat">github.com/udit-rawat</a> &middot; full resume at <a href="../">udit-rawat.github.io/resume</a>
   </footer>
 
 </div>

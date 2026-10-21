@@ -65,13 +65,21 @@ backgrounds/titles and 23.5% used shadcn/ui completely uncustomized.
 
 ## How this site is designed against it
 
+Design direction as of the current pass: warm-paper editorial, not black/white terminal
+(that was an earlier pass — dropped because it didn't carry enough real visual craft,
+not because the anti-slop reasoning behind it was wrong).
+
 - No gradients, no shadows, no glassmorphism, no rounded-card grid — ever.
-- Serif body text (Georgia), not Inter/Roboto/system-ui.
-- Monospace is used only where it's semantically earned: labels, dates, tags, and now
-  ASCII art — not slapped onto prose to look "technical."
-- No stock icons, no icon-in-circle, no decorative illustration or blob.
+- Typography is Fraunces (serif display) for headings and Work Sans for body — neither
+  is Inter/Roboto/Arial/system-ui. Distinctive on purpose.
+- One deliberate accent color (a rust/terracotta, #a8431f), used sparingly — not a
+  purple-to-blue gradient, not neon-on-dark.
+- Background is warm paper (#faf6f0), not stark #fff — text is a warm near-black, not
+  flat #000, and secondary text uses warm grays tied to the palette, not generic #666/#999.
+- Left-aligned, asymmetric layout — not everything centered.
+- No stock icons, no icon-in-circle, no decorative illustration or blob, no bordered
+  tag pills. Tags are just plain text separated by a middot.
 - Copy is specific to the actual work (real numbers, real repo names) — fails the
   name-swap test on purpose, in the good direction.
-- ASCII art (wordmark, dividers) is used sparingly and functionally — a signature
-  moment and structural dividers, not wrapped around every element. Overusing the
-  motif would just be slop wearing a different costume.
+- Any illustration (e.g. a project-specific diagram) must depict something real and
+  specific to that project, not sit there as decoration.
