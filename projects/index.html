@@ -3,8 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Udit Rawat, Projects</title>
-<meta name="description" content="Udit Rawat, AI Engineer. Experience and selected projects.">
+<title>Udit Rawat &middot; AI Engineer</title>
+<meta name="description" content="Udit Rawat, AI Engineer. Deterministic verification around LLMs: adversarial fact-checking, agentic repair pipelines, and from-scratch model reproductions, with real numbers and reported negative results.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Udit Rawat &middot; AI Engineer">
+<meta property="og:description" content="Deterministic verification around LLMs: adversarial fact-checking, agentic repair pipelines, and from-scratch model reproductions, with real numbers and reported negative results.">
+<meta property="og:url" content="https://udit-rawat.github.io/resume/projects/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Udit Rawat &middot; AI Engineer">
+<meta name="twitter:description" content="Deterministic verification around LLMs: adversarial fact-checking, agentic repair pipelines, and from-scratch model reproductions.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -59,6 +66,15 @@
     font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
     color: var(--ink-faint); margin-bottom: 30px;
   }
+  .section-label-row {
+    display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 30px;
+  }
+  .section-label-row .section-label { margin-bottom: 0; }
+  .section-label-row a {
+    font-size: 0.8rem; color: var(--ink-faint); text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-label-row a:hover { color: var(--accent); border-color: var(--accent); }
 
   .entry { padding: 28px 0; border-top: 1px solid var(--rule); }
   .entry:last-child { padding-bottom: 0; }
@@ -83,6 +99,12 @@
   .stack { margin-top: 14px; font-size: 0.82rem; color: var(--ink-faint); }
   .stack span:not(:last-child)::after { content: " · "; }
 
+  figure.shot { margin-top: 14px; max-width: 58ch; }
+  figure.shot img { width: 100%; display: block; border: 1px solid var(--rule); }
+  figure.shot figcaption { margin-top: 6px; font-size: 0.78rem; color: var(--ink-faint); }
+  .shot-pair { display: flex; gap: 10px; margin-top: 14px; max-width: 58ch; flex-wrap: wrap; }
+  .shot-pair img { flex: 1 1 200px; width: 100%; border: 1px solid var(--rule); display: block; }
+
   footer {
     margin-top: 90px; padding-top: 28px; border-top: 1px solid var(--rule);
     font-size: 0.88rem; color: var(--ink-faint);
@@ -93,6 +115,7 @@
   @media (max-width: 480px) {
     body { padding: 64px 20px 90px; }
     .entry-head { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .section-label-row { flex-direction: column; align-items: flex-start; gap: 6px; }
   }
 </style>
 </head>
@@ -102,7 +125,7 @@
   <header>
     <div class="eyebrow">AI Engineer &middot; New Delhi</div>
     <h1>Udit Rawat</h1>
-    <p class="intro">Most of my work lives in agentic systems, RAG, and the layer where a language model has to actually hold up in production, not just in a demo. Outside of work, I build things mostly to understand them properly: reproduce an architecture, break it, see where it actually fails. That's where most of the projects below came from.</p>
+    <p class="intro">Most of what I build makes deterministic code do the checking a model shouldn't be trusted to do on its own: verifying citations instead of asking an LLM if it behaved, repairing a plan with code instead of regenerating it, replaying a learned action with no model in the loop at all. The projects below are that idea applied a few different ways, including the results that didn't come out clean.</p>
     <p class="status"><span class="dot"></span>Currently available for contract and full-time work</p>
     <nav>
       <a href="../">Resume</a>
@@ -113,12 +136,15 @@
   </header>
 
   <section>
-    <div class="section-label">Experience</div>
+    <div class="section-label-row">
+      <div class="section-label">Experience</div>
+      <a href="../Udit_Rawat_AI_Engineer.pdf">Full resume (PDF)</a>
+    </div>
 
     <div class="entry">
       <div class="entry-head">
         <h3>Independent AI Engineer, Node Solutions</h3>
-        <div class="when">Sep 2026–present</div>
+        <div class="when">Sep 2026&ndash;present</div>
       </div>
       <div class="desc">Remote contract engineering for client projects: LLM cost analysis, agent systems, and production automation work, delivered directly to clients.</div>
     </div>
@@ -126,24 +152,22 @@
     <div class="entry">
       <div class="entry-head">
         <h3>AI Engineer, TapHealth</h3>
-        <div class="when">Feb 2025–Jul 2026</div>
+        <div class="when">Feb 2025&ndash;Jul 2026</div>
       </div>
       <div class="desc">AI Engineer from Apr 2025, previously AI Intern from Feb 2025, promoted after 2 months.</div>
       <ul class="sub">
-        <li>Built and shipped an offline diabetes guidance SLM running fully on device on Snapdragon 680 hardware, in partnership with Eli Lilly. 380 MB, under 890ms latency at 25 tok/s, 98% accuracy on out of distribution refusal.</li>
+        <li>Built and shipped an offline diabetes guidance SLM running fully on device on Snapdragon 680 hardware, in partnership with Eli Lilly: a LoRA fine-tuned Qwen 0.6B/1.5B, GGUF Q4_K_M quantized, with a separate ONNX INT8 classifier trained just to catch out-of-distribution questions. 380 MB, under 890ms latency at 25 tok/s, 98% accuracy on out-of-distribution refusal.</li>
         <li>Built a stateful 5 agent coaching system with LangGraph and Mem0/Hindsight memory across 25 tools. An async OCR pipeline over SSE WebSockets cut report processing from 40s to 15s.</li>
         <li>Cut LLM costs 54% by designing a centralized LiteLLM gateway routing 65+ agentic workflows across OpenAI, Anthropic, and open source models, with structured outputs via Instructor and full Langfuse tracing.</li>
-        <li>Rebuilt an 812 line rules based nudge pipeline into a decoupled DSPy architecture (strategy classifier separated from content generator), serving 5K+ users.</li>
-        <li>Started as AI Intern: built ARIMA, SARIMA, and LSTM forecasting models for patient engagement, and generated synthetic clinical data using NHANES and Q learning.</li>
       </ul>
     </div>
 
     <div class="entry">
       <div class="entry-head">
         <h3>Project Intern, IIT Kanpur</h3>
-        <div class="when">Jul 2024–Oct 2024</div>
+        <div class="when">Jul 2024&ndash;Oct 2024</div>
       </div>
-      <div class="desc">Perception &amp; Intelligence Lab. Curated a 200K+ image dataset and optimized diffusion based inpainting models, achieving 11.72 dB PSNR and 0.41 SSIM.</div>
+      <div class="desc">Perception &amp; Intelligence Lab. Curated a 200K+ image dataset and optimized a diffusion-based inpainting model against it, reaching 11.72 dB PSNR and 0.41 SSIM on held-out masks.</div>
     </div>
   </section>
 
@@ -152,33 +176,12 @@
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/tribunal">Tribunal</a></h3></div>
-      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules; no LLM grades its own honesty. <strong>96% quote grounding, 83% polarity accuracy</strong> on a 32-claim golden set. Ships as CLI, streaming web UI, and MCP server.</div>
+      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules, so no LLM grades its own output. The adversarial structure exists because a single model asked "is this true?" tends to agree with how the question is framed. On a 32-claim balanced set, deliberately small and hand-labelled: <strong>96% quote grounding, 83% polarity accuracy, 66% strict accuracy</strong>. The more useful number is the error breakdown, not the top line: the dominant failure is calling a "misleading" claim flatly "false", a specific gap in the Judge prompt, not a vague limitation.</div>
+      <figure class="shot">
+        <img src="https://raw.githubusercontent.com/udit-rawat/tribunal/main/docs/media/demo.gif" alt="Tribunal CLI run: two agents arguing a claim over retrieved evidence, a fabricated quote struck from the record, and a final verdict with confidence score" loading="lazy">
+        <figcaption>Real run: sub-claims, parallel retrieval, a fabricated quote struck from the record, verdict.</figcaption>
+      </figure>
       <div class="stack"><span>Python</span><span>LangGraph</span><span>MCP</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3></div>
-      <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. <strong>100% maze-path accuracy</strong>, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments, plus an honest negative result on 9&times;9 Sudoku, root-caused and documented rather than hidden.</div>
-      <div class="stack"><span>Python</span><span>PyTorch</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/ContextLab">Context Lab</a></h3></div>
-      <div class="desc">Built to independently verify a competitor's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Found <strong>97.9% token reduction</strong> achievable on my own corpus, but all four retrieval strategies tied on answer quality once the variance was checked. Reported the tie honestly instead of the more convenient result.</div>
-      <div class="stack"><span>Python</span><span>RAG Evals</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/planrail">planrail</a></h3></div>
-      <div class="live">Powers <a href="https://aitrainingplan.app">aitrainingplan.app</a></div>
-      <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. <strong>Resolves every constraint violation at zero extra LLM calls</strong> on both test fixtures: repair before regenerate, not a model re-grading itself.</div>
-      <div class="stack"><span>Python</span><span>Agentic Pipelines</span></div>
-    </div>
-
-    <div class="entry">
-      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/muscle-memory">muscle-memory</a></h3></div>
-      <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable runtime faults.</div>
-      <div class="stack"><span>Python</span><span>Playwright</span></div>
     </div>
 
     <div class="entry">
@@ -189,14 +192,43 @@
     </div>
 
     <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/planrail">planrail</a></h3></div>
+      <div class="live">Powers <a href="https://aitrainingplan.app">aitrainingplan.app</a></div>
+      <div class="desc">Agentic pipeline for an AI training-plan app: a model proposes a plan, deterministic code validates it against real coaching constraints, and only what code genuinely can't fix is sent back to the model. <strong>Resolves every constraint violation at zero extra LLM calls</strong> on both test fixtures: repair before regenerate, not a model re-grading itself.</div>
+      <div class="stack"><span>Python</span><span>Agentic Pipelines</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/ContextLab">Context Lab</a></h3></div>
+      <div class="desc">Built to independently verify a RAG-compression product's marketing claim of 60&ndash;80% token reduction with no loss of repo awareness, rather than trust the pitch page. Built four retrieval strategies and measured them on a 14-question, 56-run benchmark against full-context stuffing (126K tokens) as the baseline: top-8 retrieval cut that to 2.7K tokens, a <strong>97.9% reduction</strong>, at statistically indistinguishable quality, every gap between strategies fell inside the measured variance. Cost separated the strategies; quality didn't. One caveat up front: this isn't the same experiment as the 60&ndash;80% marketing number, different baseline, different task, so it's not a direct comparison, just a result that rhymes with it.</div>
+      <div class="stack"><span>Python</span><span>RAG Evals</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/hierarchical-reasoner">Hierarchical Reasoner</a></h3></div>
+      <div class="desc">From-scratch PyTorch reproduction of Sapient's Hierarchical Reasoning Model (arXiv:2506.21734): a slow planner and a fast executor solving reasoning tasks in a single forward pass. <strong>100% path accuracy on 5&times;5 maze pathfinding</strong> by epoch 20, a 66.7% compute reduction from ACT halting, 49 passing tests across 8 controlled experiments. On a simple arithmetic task a flat RNN beats it outright, 7.5K params to 17K, lower loss: hierarchy only pays off once the task actually needs it. 9&times;9 Sudoku is the counterexample where it doesn't: 15.9% cell accuracy against an 11.1% random baseline, a real architectural gap, root-caused and documented rather than hidden.</div>
+      <div class="stack"><span>Python</span><span>PyTorch</span></div>
+    </div>
+
+    <div class="entry">
+      <div class="entry-head"><h3><a href="https://github.com/udit-rawat/muscle-memory">muscle-memory</a></h3></div>
+      <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. Replay returns success, a named business outcome (e.g. MEMBER_NOT_FOUND, not a crash), or a debuggable failure. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable faults: the committed evidence covers 7 reproducible scenarios, including two mid-flow faults, an unknown popup and a session expiry, that get learned once and replayed afterward with no model involved.</div>
+      <div class="stack"><span>Python</span><span>Playwright</span></div>
+    </div>
+
+    <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/RepoSignal">RepoSignal</a></h3></div>
-      <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency: maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable.</div>
+      <div class="desc">A Chrome extension that scores any GitHub repo's trustworthiness before you add it as a dependency: maintenance, security, contributor risk, community, release hygiene and docs, weighted into a 0&ndash;100 verdict. No AI, no servers: every score computes locally from public GitHub data and is fully reproducible, with the weighting model itself tunable and exportable. A locked test suite pins the band edges and risk wording so the model can't silently drift.</div>
+      <div class="shot-pair">
+        <img src="https://raw.githubusercontent.com/udit-rawat/RepoSignal/main/store/screenshot-1-report.jpg" alt="RepoSignal report view showing a repo trust score broken into six weighted signals" loading="lazy">
+        <img src="https://raw.githubusercontent.com/udit-rawat/RepoSignal/main/store/screenshot-2-panel.png" alt="RepoSignal side panel showing a score badge next to a GitHub repo" loading="lazy">
+      </div>
       <div class="stack"><span>JavaScript</span><span>Chrome Extension</span></div>
     </div>
 
     <div class="entry">
       <div class="entry-head"><h3><a href="https://github.com/udit-rawat/animatic">Animatic</a></h3></div>
-      <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4, with no manual keyframing. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
+      <div class="desc">Spec-driven engine for AI-narrated motion-graphic reels: a JSON spec becomes Gemini-generated narration, word-locked GSAP animation, and a rendered MP4, with no manual keyframing. A render is blocked by a Claude Code hook until a mechanical motion gate passes: no stock zoom-ins, no bounce, nothing repeated from the last three reels. Live demos at <a href="https://instagram.com/ada.max24">@ada.max24</a>.</div>
       <div class="stack"><span>Python</span><span>GSAP</span></div>
     </div>
   </section>
