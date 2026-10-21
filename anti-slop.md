@@ -109,12 +109,16 @@ default, not because the anti-slop reasoning behind either earlier pass was wron
 - Typography is Fraunces (serif display, not Instrument Serif) for headings and Work
   Sans for body. Distinctive on purpose, and checked against the current go-to serif,
   not just the old sans-serif defaults.
-- One deliberate accent color (a deep teal, #1f6e63), used sparingly — not bone-and-orange,
-  not a purple-to-blue gradient, not neon-on-dark. Chosen to read as technical/precise
-  rather than "warm creative portfolio," which also fits the actual content better.
-- Background is a cool pale stone (#f0f1ec), not bone/cream and not stark #fff — text is
-  a cool near-black, not flat #000, and secondary text uses grays tied to the palette,
-  not generic #666/#999.
+- One deliberate accent color (a teal), used sparingly — not bone-and-orange, not a
+  purple-to-blue gradient, not neon-on-dark. Chosen to read as technical/precise rather
+  than "warm creative portfolio," which also fits the actual content better.
+- resume/index.html (the plain PDF-viewer page) stays on the cool-stone-paper palette
+  (#f0f1ec background, near-black ink). portfolio/index.html (the iPod player) is dark:
+  near-black background (#0d0f0e, not flat #000), light ink, teal brightened for contrast
+  on dark. The device illustration's own materials (silver body, light LCD screen) don't
+  change with the page theme, same as a real device doesn't recolor itself to match its
+  surroundings; its on-screen text uses fixed --screen-ink tokens for that reason, kept
+  deliberately separate from the page-level --ink tokens that flip between the two pages.
 - Left-aligned, asymmetric layout — not everything centered.
 - No stock icons, no icon-in-circle, no decorative illustration or blob, no bordered
   tag pills, no card wrappers around plain content. Tags are just plain text separated
