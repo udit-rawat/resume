@@ -128,13 +128,24 @@ default, not because the anti-slop reasoning behind either earlier pass was wron
 - Every redesign pass gets checked against this file before shipping, and this file gets
   updated the moment a new tell is identified, even one this site is already guilty of.
 
-## One documented exception: the iPod player's screen glow
+## One documented exception: the iPod player's realism
 
 The portfolio page (`portfolio/index.html`) is now an interactive click-wheel player, not
 a scannable list, a deliberate choice for freelance/contract outreach rather than
-recruiter ATS-scanning. Its screen bezel glows on every item change. This is technically
-the "glowing colored box-shadow" pattern this file says to avoid "ever" above. The
-exception stands because it depicts something real and singular: an LCD's own backlight,
-on the one screen element of a device illustration, tied directly to real interaction
-state (the item just changed), not a decorative halo scattered across unrelated cards.
-If this starts creeping anywhere else on the site, it's slop again and should be cut.
+recruiter ATS-scanning. It deliberately breaks the "no gradients, no shadows, ever" rule
+above, on this one device illustration only:
+
+- The screen bezel glows on every item change (an LCD's own backlight, tied to real
+  interaction state, not a decorative halo scattered across unrelated cards).
+- The device body uses a metallic gradient, a resting drop-shadow, a glass-glare overlay
+  on the screen, and concave/convex shading on the wheel and select button, because it's
+  modeling a specific real object's real materials (brushed aluminum, glass, plastic),
+  not a generic rounded-rectangle-plus-shadow container used for no reason.
+- It tilts in 3D on pointer hover and has a one-time 3D entrance animation, using a
+  restrained, non-bounce easing curve (`cubic-bezier(.2,.8,.2,1)`), consistent with the
+  motion rule above even while the surface treatment isn't.
+- The detail modal scales and fades in with the same easing curve, no elastic overshoot.
+
+The line: this treatment is confined to the one device illustration and its own modal. If
+gradients, shadows, or glow start showing up on plain content elsewhere on the site, that's
+slop again and should be cut, same as always.

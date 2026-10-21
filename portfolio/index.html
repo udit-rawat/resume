@@ -59,52 +59,75 @@
   nav a { color: var(--ink-soft); text-decoration: none; }
   nav a:hover { color: var(--accent); }
 
-  /* ---- content typography, reused inside the player's screen ---- */
-  .desc { margin-top: 10px; font-size: 0.86rem; line-height: 1.55; color: var(--ink-soft); }
+  /* ---- content typography, used inside the detail modal ---- */
+  .desc { margin-top: 12px; font-size: 1rem; line-height: 1.62; color: var(--ink-soft); }
   .desc a { color: var(--ink); text-decoration-color: var(--accent); }
   .desc strong { color: var(--ink); font-weight: 600; }
-  .sub { margin: 10px 0 0 0; padding: 0; list-style: none; }
-  .sub li { font-size: 0.82rem; color: var(--ink-soft); margin-top: 8px; padding-left: 14px; position: relative; }
+  .sub { margin: 12px 0 0 0; padding: 0; list-style: none; }
+  .sub li { font-size: 0.95rem; color: var(--ink-soft); margin-top: 9px; padding-left: 16px; position: relative; }
   .sub li::before { content: "-"; position: absolute; left: 0; color: var(--ink-faint); }
-  .stack { margin-top: 12px; font-size: 0.74rem; color: var(--ink-faint); }
+  .stack { margin-top: 14px; font-size: 0.82rem; color: var(--ink-faint); }
   .stack span:not(:last-child)::after { content: " · "; }
-  .highlights { list-style: none; margin: 8px 0 0 0; padding: 0; }
-  .highlights li { font-size: 0.82rem; color: var(--ink-soft); margin-top: 6px; padding-left: 16px; position: relative; }
+  .highlights { list-style: none; margin: 10px 0 0 0; padding: 0; }
+  .highlights li { font-size: 0.95rem; color: var(--ink-soft); margin-top: 7px; padding-left: 18px; position: relative; }
   .highlights li::before { content: "+"; position: absolute; left: 0; color: var(--accent); font-weight: 600; }
-  .flow { display: flex; flex-wrap: wrap; align-items: flex-start; margin-top: 12px; }
-  .flow .step { font-size: 0.74rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
-  .flow .cap { display: block; font-size: 0.66rem; font-weight: 400; color: var(--ink-faint); margin-top: 2px; white-space: normal; max-width: 13ch; }
-  .flow .arrow { color: var(--ink-faint); padding: 0 6px; align-self: flex-start; font-size: 0.74rem; }
-  .bars { margin-top: 12px; }
-  .bars .bar-row { display: flex; align-items: center; gap: 8px; margin-top: 7px; font-size: 0.7rem; }
-  .bars .bar-label { width: 96px; flex: none; color: var(--ink-soft); }
-  .bars .bar-track { flex: 1; background: var(--rule); height: 12px; }
+  .flow { display: flex; flex-wrap: wrap; align-items: flex-start; margin-top: 16px; }
+  .flow .step { font-size: 0.82rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+  .flow .cap { display: block; font-size: 0.72rem; font-weight: 400; color: var(--ink-faint); margin-top: 2px; white-space: normal; max-width: 15ch; }
+  .flow .arrow { color: var(--ink-faint); padding: 0 8px; align-self: flex-start; font-size: 0.82rem; }
+  .bars { margin-top: 16px; }
+  .bars .bar-row { display: flex; align-items: center; gap: 10px; margin-top: 8px; font-size: 0.78rem; }
+  .bars .bar-label { width: 116px; flex: none; color: var(--ink-soft); }
+  .bars .bar-track { flex: 1; background: var(--rule); height: 15px; }
   .bars .bar-fill { background: var(--ink-faint); height: 100%; min-width: 3px; }
   .bars .bar-fill.win { background: var(--accent); }
-  .bars .bar-value { width: 70px; flex: none; text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
-  figure.shot { margin-top: 12px; }
-  figure.shot img { width: 100%; display: block; border: 1px solid var(--rule); }
-  figure.shot figcaption { margin-top: 5px; font-size: 0.68rem; color: var(--ink-faint); }
-  .shot-pair { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-  .shot-pair img { flex: 1 1 110px; width: 100%; border: 1px solid var(--rule); display: block; }
-  .pd-live { font-size: 0.74rem; margin-top: 8px; }
+  .bars .bar-value { width: 86px; flex: none; text-align: right; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+  figure.shot { margin-top: 14px; }
+  figure.shot img { width: 100%; display: block; border: 1px solid var(--rule); border-radius: 4px; }
+  figure.shot figcaption { margin-top: 6px; font-size: 0.78rem; color: var(--ink-faint); }
+  .shot-pair { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .shot-pair img { flex: 1 1 160px; width: 100%; border: 1px solid var(--rule); border-radius: 4px; display: block; }
+  .pd-live { font-size: 0.85rem; margin-top: 8px; }
   .pd-live a { text-decoration: none; border-bottom: 1px solid currentColor; }
 
-  /* ---- player ---- */
-  .player { max-width: 300px; margin: 70px auto 0; user-select: none; }
+  /* ---- player: a deliberate exception to the flat/no-shadow rule, see anti-slop.md ---- */
+  .player { max-width: 300px; margin: 70px auto 0; user-select: none; perspective: 1400px; }
   .device {
-    background: var(--device); border: 1px solid var(--device-edge); border-radius: 30px;
+    background:
+      linear-gradient(135deg, #fcfcfb 0%, #e6e6e2 22%, #f8f8f6 45%, #d2d2cd 68%, #f3f3f0 100%);
+    border: 1px solid #b9bab3; border-radius: 30px;
     padding: 20px 20px 26px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.7),
+      inset 0 -1px 0 rgba(0,0,0,.08),
+      0 18px 30px -12px rgba(15,20,18,.28),
+      0 45px 70px -25px rgba(15,20,18,.4);
+    transform-style: preserve-3d;
+    transform: rotateX(0deg) rotateY(0deg);
+    transition: transform .5s cubic-bezier(.2,.8,.2,1);
+    animation: deviceIntro .9s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes deviceIntro {
+    from { transform: rotateY(-32deg) rotateX(9deg) scale(.86); opacity: 0; }
+    to { transform: rotateY(0) rotateX(0) scale(1); opacity: 1; }
   }
   .screen-frame {
-    background: #2a2d2c; border-radius: 12px; padding: 7px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, #343735, #1e2120);
+    border-radius: 12px; padding: 7px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.04);
     transition: box-shadow .35s ease;
   }
-  .screen-frame.glow { box-shadow: 0 0 36px 6px rgba(31,110,99,.45); }
+  .screen-frame.glow { box-shadow: inset 0 1px 3px rgba(0,0,0,.6), 0 0 38px 7px rgba(31,110,99,.5); }
+  .screen-frame::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(115deg, transparent 38%, rgba(255,255,255,.14) 50%, transparent 62%);
+  }
   .screen {
-    background: var(--screen-bg); border-radius: 6px;
+    position: relative; background: var(--screen-bg); border-radius: 6px;
     height: 190px; overflow-y: auto; -webkit-overflow-scrolling: touch;
     padding: 14px 16px;
+    box-shadow: inset 0 0 18px rgba(0,0,0,.08);
   }
   .screen-idx { font-size: 0.68rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
   .screen-kind { font-size: 0.66rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: .06em; margin-top: 10px; }
@@ -116,14 +139,18 @@
   .screen-hint { font-size: 0.68rem; color: var(--ink-faint); margin-top: 16px; }
   .pd-title {
     font-family: "Fraunces", serif; font-weight: 500; font-optical-sizing: auto;
-    font-size: 1.1rem; line-height: 1.15; color: var(--ink);
+    font-size: 1.55rem; line-height: 1.1; color: var(--ink);
   }
-  .pd-meta { font-size: 0.72rem; color: var(--ink-faint); margin-top: 3px; }
+  .pd-meta { font-size: 0.8rem; color: var(--ink-faint); margin-top: 5px; }
 
   .wheel-wrap { position: relative; width: 210px; height: 210px; margin: 26px auto 0; }
   .wheel {
     position: absolute; inset: 0; border-radius: 50%;
-    background: #dadad6; border: 1px solid var(--device-edge);
+    background: radial-gradient(circle at 34% 28%, #ececE8 0%, #d6d6d1 55%, #bfbfba 100%);
+    border: 1px solid #aeafa8;
+    box-shadow:
+      inset 0 3px 7px rgba(0,0,0,.18), inset 0 -2px 5px rgba(255,255,255,.55),
+      0 1px 0 rgba(255,255,255,.4);
     touch-action: none; cursor: grab;
   }
   .wheel:active { cursor: grabbing; }
@@ -140,12 +167,41 @@
   .select-btn {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 78px; height: 78px; border-radius: 50%;
-    background: #f1f1ee; border: 1px solid var(--device-edge); cursor: pointer;
+    background: radial-gradient(circle at 35% 30%, #ffffff 0%, #efefec 100%);
+    border: 1px solid #c3c4be; cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,.22), inset 0 1px 1px rgba(255,255,255,.9);
   }
-  .select-btn:hover { background: #fff; }
+  .select-btn:hover { background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f8f8f6 100%); }
+  .select-btn:active { box-shadow: inset 0 2px 4px rgba(0,0,0,.25); }
 
   .player-hint {
     text-align: center; margin-top: 16px; font-size: 0.76rem; color: var(--ink-faint);
+  }
+
+  /* ---- detail modal ---- */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 50; display: flex; align-items: center; justify-content: center;
+    padding: 24px; background: rgba(12,14,13,0); opacity: 0; pointer-events: none;
+    transition: opacity .32s ease, background .32s ease;
+  }
+  .modal-backdrop.open { opacity: 1; pointer-events: auto; background: rgba(12,14,13,.55); }
+  .modal-card {
+    position: relative; background: var(--paper); border-radius: 18px;
+    width: 100%; max-width: 540px; max-height: 82vh; overflow-y: auto;
+    padding: 36px 32px; box-shadow: 0 40px 90px -25px rgba(10,14,12,.5);
+    transform: scale(.88) translateY(26px); opacity: 0;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1), opacity .3s ease;
+  }
+  .modal-backdrop.open .modal-card { transform: scale(1) translateY(0); opacity: 1; }
+  .modal-close {
+    position: absolute; top: 18px; right: 18px; width: 32px; height: 32px; border-radius: 50%;
+    border: 1px solid var(--rule); background: var(--paper); color: var(--ink-soft);
+    font-size: 1.1rem; line-height: 1; cursor: pointer;
+  }
+  .modal-close:hover { color: var(--accent); border-color: var(--accent); }
+
+  @media (max-width: 480px) {
+    .modal-card { padding: 28px 22px; max-height: 86vh; }
   }
 
   footer {
@@ -178,7 +234,7 @@
   </header>
 
   <div class="player">
-    <div class="device">
+    <div class="device" id="device">
       <div class="screen-frame" id="screenFrame">
         <div class="screen" id="screen" aria-live="polite" tabindex="0"></div>
       </div>
@@ -194,6 +250,13 @@
       </div>
     </div>
     <p class="player-hint">Drag the wheel, swipe, or use arrow keys. Press the center button to open, MENU to go back.</p>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-card" id="modalCard" role="dialog" aria-modal="true">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
   </div>
 
   <footer>
@@ -358,45 +421,80 @@
   ];
 
   var current = 0;
-  var mode = 'browse'; // 'browse' | 'detail'
+  var modalOpen = false;
   var screen = document.getElementById('screen');
   var screenFrame = document.getElementById('screenFrame');
+  var device = document.getElementById('device');
+  var modalBackdrop = document.getElementById('modalBackdrop');
+  var modalCard = document.getElementById('modalCard');
+  var modalBody = document.getElementById('modalBody');
+  var modalClose = document.getElementById('modalClose');
+  var btnSelect = document.getElementById('btnSelect');
 
-  function render() {
+  function renderScreen() {
     var it = items[current];
-    if (mode === 'browse') {
-      screen.innerHTML =
-        '<div class="screen-idx">' + (current + 1) + ' / ' + items.length + '</div>' +
-        '<div class="screen-kind">' + it.kind + '</div>' +
-        '<div class="screen-title">' + it.title + '</div>' +
-        '<div class="screen-sub">' + it.sub + '</div>' +
-        '<div class="screen-hint">Press select to open</div>';
-      screen.scrollTop = 0;
-    } else {
-      screen.innerHTML = it.bodyHTML;
-      screen.scrollTop = 0;
-    }
+    screen.innerHTML =
+      '<div class="screen-idx">' + (current + 1) + ' / ' + items.length + '</div>' +
+      '<div class="screen-kind">' + it.kind + '</div>' +
+      '<div class="screen-title">' + it.title + '</div>' +
+      '<div class="screen-sub">' + it.sub + '</div>' +
+      '<div class="screen-hint">Press select to open</div>';
+    screen.scrollTop = 0;
     screenFrame.classList.remove('glow');
     void screenFrame.offsetWidth;
     screenFrame.classList.add('glow');
   }
 
-  function next() { current = (current + 1) % items.length; render(); }
-  function prev() { current = (current - 1 + items.length) % items.length; render(); }
-  function select() { if (mode === 'browse') { mode = 'detail'; render(); } }
-  function menu() { if (mode === 'detail') { mode = 'browse'; render(); } }
+  function renderModalBody() {
+    modalBody.innerHTML = items[current].bodyHTML;
+    modalBody.scrollTop = 0;
+    modalCard.scrollTop = 0;
+  }
+
+  function next() { current = (current + 1) % items.length; renderScreen(); if (modalOpen) renderModalBody(); }
+  function prev() { current = (current - 1 + items.length) % items.length; renderScreen(); if (modalOpen) renderModalBody(); }
+
+  function openModal() {
+    modalOpen = true;
+    renderModalBody();
+    modalBackdrop.classList.add('open');
+    modalClose.focus();
+  }
+  function closeModal() {
+    if (!modalOpen) return;
+    modalOpen = false;
+    modalBackdrop.classList.remove('open');
+    btnSelect.focus();
+  }
+  function select() { if (!modalOpen) openModal(); }
+  function menu() { closeModal(); }
 
   document.getElementById('btnNext').addEventListener('click', function (e) { e.stopPropagation(); next(); });
   document.getElementById('btnPrev').addEventListener('click', function (e) { e.stopPropagation(); prev(); });
   document.getElementById('btnMenu').addEventListener('click', function (e) { e.stopPropagation(); menu(); });
   document.getElementById('btnPlay').addEventListener('click', function (e) { e.stopPropagation(); select(); });
-  document.getElementById('btnSelect').addEventListener('click', function (e) { e.stopPropagation(); select(); });
+  btnSelect.addEventListener('click', function (e) { e.stopPropagation(); select(); });
+  modalClose.addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', function (e) { if (e.target === modalBackdrop) closeModal(); });
 
   window.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); prev(); }
     else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); next(); }
     else if (e.key === 'Enter') { e.preventDefault(); select(); }
     else if (e.key === 'Escape' || e.key === 'Backspace') { e.preventDefault(); menu(); }
+  });
+
+  // live 3D tilt on desktop pointer hover
+  var playerEl = document.querySelector('.player');
+  playerEl.addEventListener('mousemove', function (e) {
+    var r = device.getBoundingClientRect();
+    var px = (e.clientX - r.left) / r.width - 0.5;
+    var py = (e.clientY - r.top) / r.height - 0.5;
+    var maxTilt = 9;
+    device.style.transform = 'rotateY(' + (px * maxTilt * 2) + 'deg) rotateX(' + (-py * maxTilt * 2) + 'deg)';
+  });
+  playerEl.addEventListener('mouseleave', function () {
+    device.style.transform = 'rotateX(0deg) rotateY(0deg)';
   });
 
   // circular drag on desktop
@@ -453,7 +551,7 @@
   }, { passive: true });
   wheel.addEventListener('touchend', function () { touchStartY = null; });
 
-  render();
+  renderScreen();
 })();
 </script>
 </body>
