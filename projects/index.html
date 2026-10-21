@@ -200,7 +200,7 @@
         <li>96% quote grounding, 83% polarity accuracy on 32 hand-labelled claims</li>
         <li>Ships as CLI, streaming web UI, and MCP server</li>
       </ul>
-      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules, so no LLM grades its own output. The adversarial structure exists because a single model asked "is this true?" tends to agree with how the question is framed. On a 32-claim balanced set, deliberately small and hand-labelled: <strong>96% quote grounding, 83% polarity accuracy, 66% strict accuracy</strong>. The more useful number is the error breakdown, not the top line: the dominant failure is calling a "misleading" claim flatly "false", a specific gap in the Judge prompt, not a vague limitation.</div>
+      <div class="desc">Adversarial multi-agent fact-checker. A Prosecutor and Defender argue opposite sides of a claim over retrieved evidence; every quote is checked against the source text by a deterministic verifier before a Judge rules, so no LLM grades its own output. The adversarial structure exists because a single model asked "is this true?" tends to agree with how the question is framed. On a 32-claim balanced set, deliberately small and hand-labelled (29 scored; 3 excluded as API errors, not counted as wrong): <strong>96% quote grounding, 83% polarity accuracy, 66% strict accuracy</strong>. The more useful number is the error breakdown, not the top line: the dominant failure is calling a "misleading" claim flatly "false", a specific gap in the Judge prompt, not a vague limitation.</div>
       <figure class="shot">
         <img src="https://raw.githubusercontent.com/udit-rawat/tribunal/main/docs/media/demo.gif" alt="Tribunal CLI run: two agents arguing a claim over retrieved evidence, a fabricated quote struck from the record, and a final verdict with confidence score" loading="lazy">
         <figcaption>Real run: sub-claims, parallel retrieval, a fabricated quote struck from the record, verdict.</figcaption>
@@ -248,7 +248,7 @@
         <div class="bar-row"><div class="bar-label">Full stuffing</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><div class="bar-value">126,053 tok</div></div>
         <div class="bar-row"><div class="bar-label">Structure-aware</div><div class="bar-track"><div class="bar-fill" style="width:17.4%"></div></div><div class="bar-value">21,890 tok</div></div>
         <div class="bar-row"><div class="bar-label">Retrieve + rerank</div><div class="bar-track"><div class="bar-fill" style="width:2.1%"></div></div><div class="bar-value">2,668 tok</div></div>
-        <div class="bar-row"><div class="bar-label">Top-8 (used)</div><div class="bar-track"><div class="bar-fill win" style="width:2.1%"></div></div><div class="bar-value">2,655 tok</div></div>
+        <div class="bar-row"><div class="bar-label">Top-8 (baseline)</div><div class="bar-track"><div class="bar-fill win" style="width:2.1%"></div></div><div class="bar-value">2,655 tok</div></div>
       </div>
       <div class="stack"><span>Python</span><span>RAG Evals</span></div>
     </div>
@@ -271,9 +271,9 @@
       <ul class="highlights">
         <li>Learns a UI task once, replays it deterministically with no model after that</li>
         <li>Hands control to a human mid-task when it can't proceed safely</li>
-        <li>Tested against a deliberately legacy mock bank with injected faults</li>
+        <li>17 reproducible scenarios on committed evidence, including a 20/20 stability run with zero drift</li>
       </ul>
-      <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. Replay returns success, a named business outcome (e.g. MEMBER_NOT_FOUND, not a crash), or a debuggable failure. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable faults: the committed evidence covers 7 reproducible scenarios, including two mid-flow faults, an unknown popup and a session expiry, that get learned once and replayed afterward with no model involved.</div>
+      <div class="desc">An LLM works out how to complete a task inside a UI with no API; the successful run compiles into a typed, versioned capability that replays afterward <strong>deterministically, with no model in the loop</strong>. Replay returns success, a named business outcome (e.g. MEMBER_NOT_FOUND, not a crash), or a debuggable failure. When it can't proceed safely, it hands the live session to a human and takes it back. Tested against a deliberately legacy mock banking app with injectable faults: the committed evidence covers <strong>17 reproducible scenarios</strong>, from an unknown popup learned as a recoverable detector to a session expiry mid-flow to a human taking over a live session and handing it back. The last of the 17 is a 20-run stability replay: <strong>20/20 success, zero drift</strong>.</div>
       <figure class="shot">
         <img src="https://raw.githubusercontent.com/udit-rawat/muscle-memory/main/evidence/01_discovery_savings_balance/screenshots/final.png" alt="The deliberately legacy mock core-banking app used as the test target, showing a member summary screen with framesets and table layouts" loading="lazy">
         <figcaption>The actual test target: a deliberately legacy mock core-banking app, framesets and table layouts included.</figcaption>
