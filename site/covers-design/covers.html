@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folder covers</title>
+<!--
+  One poster per project, each in its own design movement. Rendered to
+  public/covers/<slug>.webp by scripts/render_covers.sh. Open this file in a
+  browser to see all ten side by side; add ?only=<slug> to see one.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Cormorant+Garamond:ital,wght@1,500&family=Courier+Prime:wght@400;700&family=Federo&family=Inter+Tight:wght@500;800;900&family=Josefin+Sans:wght@600;700&family=Lilita+One&family=Monoton&family=Permanent+Marker&family=Titan+One&family=Unbounded:wght@600;800&display=block" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #777; display: flex; flex-wrap: wrap; gap: 24px; padding: 24px; }
+  body.only { padding: 0; gap: 0; background: transparent; }
+  body.only .poster:not(.show) { display: none; }
+
+  .poster {
+    position: relative; width: 300px; height: 390px; overflow: hidden;
+    background: var(--paper); color: var(--ink);
+  }
+  /* Printed paper grain over every poster. */
+  .poster::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 50;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='390'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: .32; mix-blend-mode: multiply;
+  }
+  .poster.dark::after { mix-blend-mode: screen; opacity: .16; }
+  .abs { position: absolute; }
+
+  /* ============ 1. Tribunal: Brutalism ============ */
+  #tribunal { --paper: #d8d5ce; --ink: #111; }
+  .br-top { left: 14px; right: 14px; top: 12px; display: flex; justify-content: space-between;
+    font: 700 10px/1 'Courier Prime', monospace; border-bottom: 3px solid #111; padding-bottom: 7px; }
+  .br-title { left: 8px; top: 34px; font: 400 100px/.8 'Archivo Black', sans-serif; letter-spacing: -0.055em; }
+  .br-claim { left: 14px; right: 14px; top: 284px; font: 400 13.5px/1.35 'Courier Prime', monospace; }
+  .br-claim s { text-decoration: none; background: linear-gradient(#c8161d, #c8161d) 0 55% / 100% 3px no-repeat; }
+  .br-stamp { right: 12px; top: 178px; transform: rotate(-11deg); border: 4px solid #c8161d; color: #c8161d;
+    padding: 4px 10px 3px; font: 400 40px/.95 'Archivo Black', sans-serif; text-align: center; mix-blend-mode: multiply; }
+  .br-stamp small { display: block; font: 700 11px/1.3 'Courier Prime', monospace; letter-spacing: .08em; }
+  .br-foot { left: 0; right: 0; bottom: 0; height: 44px; background: #111; color: #d8d5ce;
+    display: flex; align-items: center; justify-content: space-between; padding: 0 14px;
+    font: 700 11px/1 'Courier Prime', monospace; letter-spacing: .04em; }
+
+  /* ============ 2. planrail: De Stijl ============ */
+  #planrail { --paper: #efece3; --ink: #111; }
+  .ds { background: #111; }
+  .ds-red { background: #d32b1f; } .ds-blue { background: #1f4fa0; } .ds-yellow { background: #f1c22e; }
+  .ds-title { font: 400 52px/.92 'Bungee', sans-serif; letter-spacing: -0.01em; }
+  .ds-steps { font: 400 11px/1.55 'Bungee', sans-serif; }
+
+  /* ============ 3. muscle-memory: Skeuomorphism ============ */
+  #muscle-memory { --paper: #bccde0; }
+  .sk-desk { inset: 0; background: radial-gradient(120% 80% at 50% 20%, #d3e0ee 0%, #b3c6db 60%, #9fb5cd 100%); }
+  .cassette { left: 22px; top: 40px; width: 256px; height: 164px; border-radius: 12px;
+    background: linear-gradient(170deg, #4a4e57 0%, #2a2d33 45%, #1b1d21 100%);
+    box-shadow: 0 1px 0 rgba(255,255,255,.25) inset, 0 -2px 0 rgba(0,0,0,.5) inset, 0 18px 26px rgba(20,35,60,.45), 0 3px 6px rgba(20,35,60,.35); }
+  .screw { width: 9px; height: 9px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #c9ccd2, #6b6f78 60%, #3a3d43);
+    box-shadow: 0 1px 1px rgba(0,0,0,.6); }
+  .screw::after { content: ''; position: absolute; left: 1px; right: 1px; top: 4px; height: 1px; background: #2b2d31; transform: rotate(35deg); }
+  .label { left: 14px; right: 14px; top: 12px; height: 98px; border-radius: 6px;
+    background: linear-gradient(#f6f0de, #ece3c8); box-shadow: 0 1px 0 rgba(255,255,255,.6) inset, 0 1px 2px rgba(0,0,0,.4); overflow: hidden; }
+  .label-band { left: 0; right: 0; top: 30px; height: 50px; background: linear-gradient(#e5662c 0 33%, #f1a12a 33% 66%, #f6d34a 66%); opacity: .92; }
+  .label-title { left: 10px; top: 4px; font: 400 21px/1 'Permanent Marker', cursive; color: #1d2a6b; transform: rotate(-2deg); }
+  .label-side { right: 9px; top: 7px; font: 700 10px/1 'Courier Prime', monospace; color: #6b5a3a; }
+  .window { left: 50%; top: 40px; transform: translateX(-50%); width: 150px; height: 34px; border-radius: 17px;
+    background: linear-gradient(#2a2420, #4a3b30); box-shadow: 0 2px 3px rgba(0,0,0,.6) inset; }
+  .reel { top: 3px; width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle, #f4f0e6 0 26%, #2e2622 27% 36%, #5a4636 37% 100%); }
+  .reel::before { content: ''; position: absolute; inset: 7px; border-radius: 50%;
+    background: conic-gradient(#f4f0e6 0 8%, transparent 8% 17%, #f4f0e6 17% 25%, transparent 25% 34%, #f4f0e6 34% 42%, transparent 42% 50%, #f4f0e6 50% 58%, transparent 58% 67%, #f4f0e6 67% 75%, transparent 75% 84%, #f4f0e6 84% 92%, transparent 92%);
+    -webkit-mask: radial-gradient(circle, transparent 0 4px, #000 4.5px); }
+  .tape { top: 9px; height: 16px; background: linear-gradient(#5b3a22, #3a2416); border-radius: 8px; }
+  .lip { left: 46px; right: 46px; bottom: 0; height: 34px; background: linear-gradient(#25282d, #17191c);
+    clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%); }
+  .lip i { position: absolute; bottom: 9px; width: 10px; height: 10px; border-radius: 50%; background: #0b0c0e; box-shadow: 0 1px 0 rgba(255,255,255,.12); }
+  .deck { left: 22px; right: 22px; top: 238px; height: 74px; border-radius: 10px;
+    background: linear-gradient(#e9edf2, #c4ccd6); box-shadow: 0 1px 0 #fff inset, 0 -2px 3px rgba(0,0,0,.15) inset, 0 10px 18px rgba(20,35,60,.3); }
+  .key { top: 12px; width: 108px; height: 50px; border-radius: 8px; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(#fdfdfd, #dfe3e8); box-shadow: 0 1px 0 #fff inset, 0 4px 0 #9aa3ad, 0 6px 8px rgba(0,0,0,.25);
+    font: 700 14px/1 'Courier Prime', monospace; color: #3a3f47; }
+  .key.down { top: 15px; box-shadow: 0 1px 0 #fff inset, 0 1px 0 #9aa3ad, 0 2px 4px rgba(0,0,0,.25); background: linear-gradient(#eef1f4, #d6dbe1); }
+  .rec-dot { width: 13px; height: 13px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #ff8a7a, #d3261a 60%, #8c140c); box-shadow: 0 0 6px rgba(255,60,40,.6); }
+  .play { width: 0; height: 0; border-left: 13px solid #2f9e5b; border-top: 8px solid transparent; border-bottom: 8px solid transparent; }
+  .sk-note { left: 24px; right: 24px; top: 330px; font: 400 17px/1.25 'Permanent Marker', cursive; color: #1d2a6b; transform: rotate(-1.5deg); }
+
+  /* ============ 4. Context Lab: Swiss ============ */
+  #context-lab { --paper: #f3dc86; --ink: #111; }
+  .sw-grid { inset: 0; background-image: linear-gradient(90deg, rgba(0,0,0,.14) 1px, transparent 1px); background-size: 50px 100%; background-position: 14px 0; }
+  .sw-head { left: 14px; right: 14px; top: 14px; display: flex; justify-content: space-between; font: 800 15px/1.1 'Inter Tight', sans-serif; letter-spacing: -0.02em; }
+  .sw-head span:last-child { font-weight: 500; text-align: right; font-size: 11px; }
+  .sw-big { left: 8px; top: 54px; font: 900 116px/.8 'Inter Tight', sans-serif; letter-spacing: -0.075em; }
+  .sw-pct { left: 232px; top: 58px; font: 900 44px/.8 'Inter Tight', sans-serif; letter-spacing: -0.05em; }
+  .sw-sub { left: 14px; top: 172px; width: 200px; font: 500 13px/1.25 'Inter Tight', sans-serif; }
+  .sw-rows { left: 14px; right: 14px; top: 236px; font: 500 11px/1 'Inter Tight', sans-serif; }
+  .sw-row { display: grid; grid-template-columns: 92px 1fr 52px; gap: 8px; align-items: center; padding: 7px 0; border-top: 1.5px solid #111; }
+  .sw-bar { height: 9px; background: #111; min-width: 3px; }
+  .sw-row b { text-align: right; font-weight: 800; }
+
+  /* ============ 5. glassbox: Isometric ============ */
+  #glassbox { --paper: #8dcdcb; --ink: #0b3d3e; }
+  .iso-title { left: 16px; top: 14px; font: 800 33px/1 'Unbounded', sans-serif; letter-spacing: -0.04em; color: #0b3d3e; }
+  .iso-sub { left: 17px; top: 54px; font: 600 10.5px/1.3 'Unbounded', sans-serif; color: #0b3d3e; opacity: .8; }
+
+  /* ============ 6. Hierarchical Reasoner: Bauhaus ============ */
+  #hrm { --paper: #ece4d2; --ink: #1a1a1a; }
+  .bh-v { left: 10px; bottom: 16px; transform-origin: left bottom; transform: rotate(-90deg) translateY(100%);
+    font: 700 31px/1 'Josefin Sans', sans-serif; letter-spacing: .06em; white-space: nowrap; }
+  .bh-word { left: 64px; bottom: 16px; font: 700 35px/1 'Josefin Sans', sans-serif; letter-spacing: .04em; }
+  .bh-lab { font: 600 11px/1.2 'Josefin Sans', sans-serif; letter-spacing: .08em; }
+
+  /* ============ 7. RepoSignal: 3D inflated ============ */
+  #reposignal { --paper: #cfd6f2; }
+  .inf-bg { inset: 0; background: radial-gradient(90% 70% at 50% 40%, #e3e8fb, #b9c3ee); }
+  .puff {
+    font-family: 'Titan One', sans-serif; color: transparent; -webkit-background-clip: text; background-clip: text;
+    filter: drop-shadow(0 5px 0 var(--edge)) drop-shadow(0 16px 14px rgba(40,50,110,.35));
+  }
+  .inf-68 { left: 26px; top: 64px; font-size: 190px; line-height: 1; letter-spacing: -0.04em; --edge: #b8461f;
+    background-image: radial-gradient(60% 55% at 32% 28%, #ffe6d6 0%, #ffa877 30%, #f0703f 62%, #c8501f 100%); }
+  .inf-name { left: 18px; top: 16px; font-size: 31px; line-height: 1; --edge: #3d4fae;
+    background-image: radial-gradient(70% 90% at 30% 25%, #ffffff 0%, #c9d1ff 35%, #6f80e0 100%); }
+  .pill { border-radius: 999px; display: flex; align-items: center; justify-content: center;
+    font: 400 15px/1 'Titan One', sans-serif; letter-spacing: .01em; }
+  .pill-100 { left: 196px; top: 252px; width: 82px; height: 40px; color: #fff;
+    background: radial-gradient(70% 90% at 35% 25%, #9fb0ff, #4a5fd6 70%);
+    box-shadow: inset 0 3px 4px rgba(255,255,255,.55), inset 0 -5px 6px rgba(20,30,110,.45), 0 8px 12px rgba(40,50,110,.35); }
+  .pill-adopt { left: 22px; top: 314px; width: 256px; height: 48px; color: #7a4b00; font-size: 16px;
+    background: radial-gradient(80% 120% at 35% 20%, #fff3b8, #f6c844 65%, #e0a51c);
+    box-shadow: inset 0 4px 5px rgba(255,255,255,.7), inset 0 -6px 8px rgba(150,95,0,.4), 0 10px 14px rgba(40,50,110,.3); }
+
+  /* ============ 8. Animatic: Paper cutout ============ */
+  #animatic { --paper: #efa98f; }
+  .cut { filter: drop-shadow(1px 2px 0 rgba(60,20,10,.28)) drop-shadow(3px 6px 6px rgba(60,20,10,.22)); }
+  .cut-sun { left: 188px; top: 26px; width: 92px; height: 92px; border-radius: 50%; background: #f6d34a; }
+  .cut-hill1 { left: -20px; right: -20px; bottom: -10px; height: 140px; background: #c4472a;
+    clip-path: polygon(0 40%, 18% 22%, 33% 34%, 52% 8%, 70% 30%, 86% 16%, 100% 30%, 100% 100%, 0 100%); }
+  .cut-hill2 { left: -20px; right: -20px; bottom: -10px; height: 92px; background: #7a2412;
+    clip-path: polygon(0 30%, 22% 52%, 40% 26%, 60% 48%, 78% 20%, 100% 42%, 100% 100%, 0 100%); }
+  .strip { left: -30px; top: 150px; width: 380px; height: 70px; background: #1b1b1b; transform: rotate(-8deg); }
+  .strip i { position: absolute; width: 11px; height: 8px; background: #efa98f; border-radius: 1px; }
+  .frame { top: 15px; width: 54px; height: 40px; background: #f4ead6; border-radius: 2px; }
+  .tile { width: 31px; height: 40px; display: flex; align-items: center; justify-content: center;
+    font: 400 30px/1 'Lilita One', sans-serif; color: #1b1b1b; border-radius: 2px; }
+  .cut-note { left: 20px; top: 26px; width: 150px; padding: 9px 12px; background: #f4ead6; transform: rotate(-3deg);
+    font: 400 14px/1.2 'Lilita One', sans-serif; color: #7a2412; border-radius: 2px; }
+
+  /* ============ 9. AdaMax: Op Art ============ */
+  #adamax { --paper: #161616; }
+  .op-title { left: 0; right: 0; top: 16px; text-align: center; font: 400 46px/1 'Monoton', cursive; color: #f2efe8; letter-spacing: .02em; }
+  .op-foot { left: 0; right: 0; bottom: 14px; text-align: center; font: 700 11px/1 'Courier Prime', monospace; color: #f2efe8; letter-spacing: .12em; }
+
+  /* ============ 10. Misaanjh: Art Nouveau ============ */
+  #misaanjh { --paper: #efc9d2; --ink: #3b4724; }
+  .an-photo { left: 74px; top: 74px; width: 152px; height: 196px; object-fit: cover;
+    clip-path: path('M0 196 L0 76 C0 34 34 0 76 0 C118 0 152 34 152 76 L152 196 Z'); }
+  .an-title { left: 0; right: 0; top: 302px; text-align: center; font: 400 40px/1 'Federo', serif; letter-spacing: .1em; color: #3b4724; }
+  .an-sub { left: 0; right: 0; top: 346px; text-align: center; font: 500 italic 15px/1 'Cormorant Garamond', serif; color: #6b5a2a; letter-spacing: .04em; }
+</style>
+</head>
+<body>
+
+<!-- 1. Tribunal: Brutalism -->
+<section class="poster" id="tribunal">
+  <div class="abs br-top"><span>EXHIBIT A</span><span>GOLDEN SET OF 32</span></div>
+  <div class="abs br-title">TRI<br>BUN<br>AL</div>
+  <div class="abs br-stamp">FALSE<small>90% CONFIDENCE</small></div>
+  <p class="abs br-claim">CLAIM: <s>The Great Wall of China is visible from space with the naked eye.</s></p>
+  <div class="abs br-foot"><span>96% GROUNDED</span><span>83% POLARITY</span></div>
+</section>
+
+<!-- 2. planrail: De Stijl -->
+<section class="poster" id="planrail">
+  <div class="abs ds-red" style="left:0;top:0;width:176px;height:150px"></div>
+  <div class="abs ds-blue" style="left:256px;top:258px;width:44px;height:132px"></div>
+  <div class="abs ds-yellow" style="left:176px;top:326px;width:80px;height:64px"></div>
+  <div class="abs ds-yellow" style="left:256px;top:0;width:44px;height:58px"></div>
+  <!-- rails -->
+  <div class="abs ds" style="left:170px;top:0;width:10px;height:390px"></div>
+  <div class="abs ds" style="left:250px;top:0;width:8px;height:390px"></div>
+  <div class="abs ds" style="left:0;top:148px;width:300px;height:10px"></div>
+  <div class="abs ds" style="left:170px;top:52px;width:130px;height:7px"></div>
+  <div class="abs ds" style="left:170px;top:252px;width:130px;height:8px"></div>
+  <div class="abs ds" style="left:0;top:322px;width:300px;height:8px"></div>
+  <div class="abs ds-title" style="left:14px;top:176px">PLAN<br>RAIL</div>
+  <div class="abs ds-steps" style="left:186px;top:70px">GENERATE<br>VALIDATE<br>REPAIR<br>PUBLISH</div>
+  <div class="abs ds-steps" style="left:186px;top:266px;font-size:10px;line-height:1.3">0 EXTRA<br>LLM<br>CALLS</div>
+  <div class="abs ds-steps" style="left:14px;top:342px;font-size:10px;line-height:1.3">THE MODEL PROPOSES.<br>CODE DECIDES.</div>
+</section>
+
+<!-- 3. muscle-memory: Skeuomorphism -->
+<section class="poster" id="muscle-memory">
+  <div class="abs sk-desk"></div>
+  <div class="abs cassette">
+    <span class="abs screw" style="left:6px;top:6px"></span><span class="abs screw" style="right:6px;top:6px"></span>
+    <span class="abs screw" style="left:6px;bottom:6px"></span><span class="abs screw" style="right:6px;bottom:6px"></span>
+    <div class="abs label">
+      <div class="abs label-band"></div>
+      <div class="abs label-title">muscle-memory</div>
+      <div class="abs label-side">A</div>
+      <div class="abs window">
+        <div class="abs tape" style="left:12px;width:58px"></div>
+        <div class="abs tape" style="left:80px;width:58px;opacity:.6"></div>
+        <div class="abs reel" style="left:14px"></div>
+        <div class="abs reel" style="right:14px"></div>
+      </div>
+      <div class="abs" style="left:10px;bottom:6px;font:700 9px/1 'Courier Prime',monospace;color:#3a2f1c">savings_balance.replay</div>
+      <div class="abs" style="right:10px;bottom:6px;font:700 9px/1 'Courier Prime',monospace;color:#3a2f1c">20/20</div>
+    </div>
+    <div class="abs lip"><i style="left:18%"></i><i style="right:18%"></i></div>
+  </div>
+  <div class="abs deck">
+    <div class="abs key down" style="left:12px"><span class="rec-dot"></span>REC</div>
+    <div class="abs key" style="right:12px"><span class="play"></span>PLAY</div>
+  </div>
+  <div class="abs sk-note">learned once.<br>replays with no model.</div>
+</section>
+
+<!-- 4. Context Lab: Swiss -->
+<section class="poster" id="context-lab">
+  <div class="abs sw-grid"></div>
+  <div class="abs sw-head"><span>Context Lab</span><span>Tokens per query<br>4 strategies</span></div>
+  <div class="abs sw-big">97.9</div>
+  <div class="abs sw-pct">%</div>
+  <div class="abs sw-sub">fewer tokens than stuffing the whole context. Same answer quality.</div>
+  <div class="abs sw-rows">
+    <div class="sw-row"><span>Full context</span><div class="sw-bar" style="width:100%"></div><b>126,053</b></div>
+    <div class="sw-row"><span>Structure-aware</span><div class="sw-bar" style="width:17.4%"></div><b>21,890</b></div>
+    <div class="sw-row"><span>Rerank</span><div class="sw-bar" style="width:2.1%"></div><b>2,668</b></div>
+    <div class="sw-row" style="border-bottom:1.5px solid #111"><span>Top-8</span><div class="sw-bar" style="width:2.1%"></div><b>2,655</b></div>
+  </div>
+</section>
+
+<!-- 5. glassbox: Isometric -->
+<section class="poster" id="glassbox">
+  <div class="abs iso-title">glassbox</div>
+  <div class="abs iso-sub">a language model<br>you can see inside</div>
+  <svg class="abs" id="iso" style="left:0;top:0" width="300" height="390"></svg>
+</section>
+
+<!-- 6. Hierarchical Reasoner: Bauhaus -->
+<section class="poster" id="hrm">
+  <svg class="abs" style="left:0;top:0" width="300" height="390">
+    <!-- maze path from executor to planner -->
+    <path d="M110 250 H150 V200 H120 V160 H190 V120" fill="none" stroke="#1a1a1a" stroke-width="7" stroke-linejoin="miter"/>
+    <circle cx="208" cy="108" r="78" fill="#d1352a"/>
+    <rect x="58" y="214" width="92" height="92" fill="#1f4fa0"/>
+    <polygon points="236,212 288,306 184,306" fill="#efbe2c"/>
+    <rect x="0" y="0" width="300" height="10" fill="#1a1a1a"/>
+    <rect x="44" y="0" width="10" height="390" fill="#1a1a1a"/>
+    <circle cx="208" cy="108" r="78" fill="none" stroke="#1a1a1a" stroke-width="3"/>
+  </svg>
+  <div class="abs bh-lab" style="left:168px;top:96px;color:#fff;font-size:22px;letter-spacing:.02em">100%</div>
+  <div class="abs bh-lab" style="left:170px;top:122px;color:#fff">OF MAZES</div>
+  <div class="abs bh-lab" style="left:64px;top:24px">H . SLOW PLANNER</div>
+  <div class="abs bh-lab" style="left:66px;top:228px;color:#fff">L . FAST<br>EXECUTOR</div>
+  <div class="abs bh-v">HIERARCHICAL</div>
+  <div class="abs bh-word">REASONER</div>
+</section>
+
+<!-- 7. RepoSignal: 3D inflated -->
+<section class="poster" id="reposignal">
+  <div class="abs inf-bg"></div>
+  <div class="abs puff inf-name">RepoSignal</div>
+  <div class="abs puff inf-68">68</div>
+  <div class="abs pill pill-100">/100</div>
+  <div class="abs pill pill-adopt">ADOPT WITH CAUTION</div>
+</section>
+
+<!-- 8. Animatic: Paper cutout -->
+<section class="poster" id="animatic">
+  <div class="abs cut cut-sun"></div>
+  <div class="abs cut cut-hill1"></div>
+  <div class="abs cut cut-hill2"></div>
+  <div class="abs cut cut-note">spec.json in,<br>narrated MP4 out</div>
+  <div class="abs cut strip" id="strip"></div>
+  <div class="abs" id="tiles" style="left:12px;top:244px;width:280px;height:60px"></div>
+</section>
+
+<!-- 9. AdaMax: Op Art -->
+<section class="poster dark" id="adamax">
+  <svg class="abs" id="op" style="left:0;top:0" width="300" height="390"></svg>
+  <div class="abs op-title">AdaMax</div>
+  <div class="abs op-foot">@ADA.MAX24  .  ADAMAX.DEV</div>
+</section>
+
+<!-- 10. Misaanjh: Art Nouveau -->
+<section class="poster" id="misaanjh">
+  <svg class="abs" style="left:0;top:0" width="300" height="390">
+    <g fill="none" stroke="#3b4724" stroke-width="2">
+      <!-- halo -->
+      <circle cx="150" cy="150" r="108" stroke="#b08a3e" stroke-width="1.5"/>
+      <circle cx="150" cy="150" r="100" stroke="#b08a3e" stroke-width="1"/>
+    </g>
+    <g id="rays" stroke="#b08a3e" stroke-width="1"></g>
+    <!-- arch frame -->
+    <path d="M66 276 L66 152 C66 104 104 66 150 66 C196 66 234 104 234 152 L234 276" fill="none" stroke="#3b4724" stroke-width="3"/>
+    <path d="M58 280 L58 152 C58 100 100 58 150 58 C200 58 242 100 242 152 L242 280" fill="none" stroke="#3b4724" stroke-width="1.2"/>
+    <!-- crescent moon -->
+    <path d="M150 20 a17 17 0 1 0 14 27 a13 13 0 1 1 -14 -27z" fill="#b08a3e"/>
+    <!-- whiplash vines -->
+    <g fill="none" stroke="#3b4724" stroke-width="2.2" stroke-linecap="round">
+      <path d="M58 280 C20 250 46 206 22 170 C6 146 30 118 14 96"/>
+      <path d="M242 280 C280 250 254 206 278 170 C294 146 270 118 286 96"/>
+      <path d="M40 220 c-14 -6 -18 -20 -8 -28 c8 6 10 18 8 28z" fill="#3b4724"/>
+      <path d="M260 220 c14 -6 18 -20 8 -28 c-8 6 -10 18 -8 28z" fill="#3b4724"/>
+      <path d="M26 150 c-12 -2 -18 -14 -10 -22 c8 4 12 14 10 22z" fill="#3b4724"/>
+      <path d="M274 150 c12 -2 18 -14 10 -22 c-8 4 -12 14 -10 22z" fill="#3b4724"/>
+    </g>
+    <!-- flowers -->
+    <g fill="#b08a3e">
+      <circle cx="14" cy="96" r="5"/><circle cx="286" cy="96" r="5"/>
+    </g>
+    <!-- banner -->
+    <path d="M30 292 H270 L262 310 L270 328 H30 L38 310 Z" fill="none" stroke="#3b4724" stroke-width="1.5" transform="translate(0 4)"/>
+    <line x1="60" y1="368" x2="240" y2="368" stroke="#b08a3e" stroke-width="1"/>
+  </svg>
+  <img class="abs an-photo" src="../covers-src/dither/misaanjh-ink.png" alt="">
+  <div class="abs an-title">MISAANJH</div>
+  <div class="abs an-sub">sleepwear, built end to end</div>
+</section>
+
+<script>
+  // ?only=<slug> shows a single poster at the page origin, for rendering.
+  const only = new URLSearchParams(location.search).get('only')
+  if (only) { document.body.classList.add('only'); document.getElementById(only).classList.add('show') }
+
+  const NS = 'http://www.w3.org/2000/svg'
+  const el = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e }
+
+  // ---- glassbox: an isometric glass cube with the model's layers stacked inside
+  ;(() => {
+    const svg = document.getElementById('iso')
+    const a = 128, O = [124, 372 - a] // back-bottom vertex; front-bottom lands at y=372
+    const ex = [0.866, 0.5], ey = [-0.866, 0.5]
+    const P = (u, v, z) => [O[0] + u * ex[0] + v * ey[0], O[1] + u * ex[1] + v * ey[1] - z]
+    const pts = (arr) => arr.map((p) => p.join(',')).join(' ')
+    const H = 140
+    // back faces of the glass, faint
+    el('polygon', { points: pts([P(0,0,0), P(a,0,0), P(a,a,0), P(0,a,0)]), fill: 'rgba(255,255,255,.12)', stroke: 'rgba(255,255,255,.5)', 'stroke-width': 1, 'stroke-dasharray': '3 3' }, svg)
+    el('line', { x1: P(0,0,0)[0], y1: P(0,0,0)[1], x2: P(0,0,H)[0], y2: P(0,0,H)[1], stroke: 'rgba(255,255,255,.5)', 'stroke-dasharray': '3 3' }, svg)
+    // layers inside, bottom to top
+    const layers = [
+      ['BPE', '#f4f0e6'], ['RoPE', '#0b5556'], ['GQA', '#ef8a6d'], ['SwiGLU', '#f4f0e6'], ['RMSNorm', '#0b5556'], ['LoRA', '#ef8a6d'],
+    ]
+    const i = 18, t = 8
+    layers.forEach(([name, col], k) => {
+      const z = 12 + k * 20
+      const top = [P(i,i,z+t), P(a-i,i,z+t), P(a-i,a-i,z+t), P(i,a-i,z+t)]
+      const shade = (c, f) => { const n = parseInt(c.slice(1),16); return `rgb(${[(n>>16)&255,(n>>8)&255,n&255].map(x=>Math.round(x*f)).join(',')})` }
+      el('polygon', { points: pts([P(a-i,i,z), P(a-i,a-i,z), P(a-i,a-i,z+t), P(a-i,i,z+t)]), fill: shade(col,.72) }, svg)
+      el('polygon', { points: pts([P(i,a-i,z), P(a-i,a-i,z), P(a-i,a-i,z+t), P(i,a-i,z+t)]), fill: shade(col,.86) }, svg)
+      el('polygon', { points: pts(top), fill: col, stroke: 'rgba(0,0,0,.15)', 'stroke-width': .6 }, svg)
+      const anchor = P(a-i, i, z + t/2)
+      el('line', { x1: anchor[0], y1: anchor[1], x2: 292, y2: anchor[1] - 4, stroke: '#0b3d3e', 'stroke-width': .8 }, svg)
+      const tx = el('text', { x: 292, y: anchor[1] - 7, 'text-anchor': 'end', 'font-family': 'Unbounded', 'font-weight': 600, 'font-size': 8, fill: '#0b3d3e' }, svg)
+      tx.textContent = name
+    })
+    // front glass faces
+    el('polygon', { points: pts([P(0,a,0), P(a,a,0), P(a,a,H), P(0,a,H)]), fill: 'rgba(255,255,255,.16)', stroke: '#fff', 'stroke-width': 1.6 }, svg)
+    el('polygon', { points: pts([P(a,0,0), P(a,a,0), P(a,a,H), P(a,0,H)]), fill: 'rgba(255,255,255,.08)', stroke: '#fff', 'stroke-width': 1.6 }, svg)
+    el('polygon', { points: pts([P(0,0,H), P(a,0,H), P(a,a,H), P(0,a,H)]), fill: 'rgba(255,255,255,.22)', stroke: '#fff', 'stroke-width': 1.6 }, svg)
+    // glare
+    el('polygon', { points: pts([P(10,a,20), P(40,a,20), P(70,a,H-10), P(40,a,H-10)]), fill: 'rgba(255,255,255,.22)' }, svg)
+  })()
+
+  // ---- Animatic: sprocket holes, film frames, cut-paper letter tiles
+  ;(() => {
+    const strip = document.getElementById('strip')
+    for (let x = 6; x < 380; x += 20) {
+      const top = document.createElement('i'); top.style.left = x + 'px'; top.style.top = '4px'; strip.appendChild(top)
+      const bot = document.createElement('i'); bot.style.left = x + 'px'; bot.style.bottom = '4px'; strip.appendChild(bot)
+    }
+    for (let x = 40; x < 360; x += 62) { const f = document.createElement('div'); f.className = 'abs frame'; f.style.left = x + 'px'; strip.appendChild(f) }
+    const cols = ['#f4ead6', '#f6d34a', '#9cc3e6', '#f4ead6', '#f6d34a', '#f4ead6', '#9cc3e6', '#f6d34a']
+    const rot = [-7, 4, -3, 6, -5, 3, -6, 5]
+    const wrap = document.getElementById('tiles')
+    'ANIMATIC'.split('').forEach((ch, k) => {
+      const t = document.createElement('div'); t.className = 'abs cut tile'; t.textContent = ch
+      t.style.left = (k * 34) + 'px'; t.style.top = (k % 2 ? 10 : 0) + 'px'
+      t.style.background = cols[k]; t.style.transform = `rotate(${rot[k]}deg)`; wrap.appendChild(t)
+    })
+  })()
+
+  // ---- AdaMax: nested warped contours, alternating fill, the optimizer's ball on one ring
+  ;(() => {
+    const svg = document.getElementById('op')
+    const N = 26
+    for (let k = 0; k < N; k++) {
+      const f = 1 - k / N
+      const cx = 150 + (1 - f) * 34, cy = 215 + (1 - f) * 26
+      const rx = 260 * f, ry = 230 * f
+      el('ellipse', { cx, cy, rx, ry, transform: `rotate(${-18 + k * 1.6} ${cx} ${cy})`, fill: k % 2 ? '#161616' : '#f2efe8' }, svg)
+    }
+    el('rect', { x: 0, y: 0, width: 300, height: 74, fill: '#161616' }, svg)
+    el('rect', { x: 0, y: 352, width: 300, height: 38, fill: '#161616' }, svg)
+    el('circle', { cx: 92, cy: 168, r: 7, fill: '#e8513a', stroke: '#161616', 'stroke-width': 2 }, svg)
+  })()
+
+  // ---- Misaanjh: halo rays
+  ;(() => {
+    const g = document.getElementById('rays')
+    for (let k = 0; k < 36; k++) {
+      const a = (k / 36) * Math.PI * 2
+      el('line', { x1: 150 + Math.cos(a) * 100, y1: 150 + Math.sin(a) * 100, x2: 150 + Math.cos(a) * 108, y2: 150 + Math.sin(a) * 108 }, g)
+    }
+  })()
+</script>
+</body>
+</html>

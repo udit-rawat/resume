@@ -170,3 +170,29 @@ above, on this one device illustration only:
 The line: this treatment is confined to the one device illustration and its own modal. If
 gradients, shadows, or glow start showing up on plain content elsewhere on the site, that's
 slop again and should be cut, same as always.
+
+
+## Second documented exception: the Nov 2026 rebuild (`site/`)
+
+The portfolio was rebuilt as a Vite + React app that also serves as the freelance
+client site. Udit picked the references himself (sebneil.com, fanout.sh, mikes.cv,
+butter.video, generaladmission.house, easyui.site, illos.dev, ascii-magic.com), and
+several of them knowingly break the rules above. Recorded here so they read as
+choices, not drift:
+
+- **Coloured cards with folder covers (fanout.sh).** Breaks "no card around
+  everything". Accepted because each card colour belongs to one project and its
+  cover, so the colour carries identity rather than decoration. Plain text is still
+  never carded.
+- **Monospace for data (mikes.cv, fanout).** Used only for coordinates, dates, years,
+  stat chips and fact-sheet labels, all of which are data. Never for prose.
+- **Middot-joined stat chips.** Copied from fanout's chip format on purpose.
+- **Soft shadows** on the floating nav and the hover preview window only, because
+  both float over moving content and need to separate from it.
+- **The 3D ring (sebneil.com)** is the one spectacle on the page. It drifts slowly,
+  stops while hovered, and is skipped by reduced-motion users. Nothing else
+  animates without being asked.
+
+What still holds: every number has a receipt, every cover is printed from a real
+artifact of that project (see `site/scripts/make_covers.py`), no gradient text, no
+purple-to-blue, no icon-in-circle, no eyebrow over every heading.
